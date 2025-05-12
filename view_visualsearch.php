@@ -99,3 +99,6 @@
 	</div>
 		<input type='hidden' name='vs' id='vs' value='<?php echo $_SESSION['vs']; ?>'>
 </form>
+<hr>
+<hr>
+<hr>
