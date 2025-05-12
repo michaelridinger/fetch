@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(noacsc|meta-m1|meta-m2|meta-m3|meta-m4|meta-m5|META-M1|META-M2|META-M3|META-M4|META-M5|hcca|hcc|HCCA|HCC|access|connect|laca|lgca|infohio|mveca|ncocc|neonet|neomin|noeca|omeresa|swoca|sparcc|woco|tccsa|noacsc|nwoca|m1|m2|m3|m4|m5|ACCESS|CONNECT|LACA|LGCA|INFOHIO|MVECA|NCOCC|NEONET|NEOMIN|NOECA|OMERESA|SWOCA|SPARCC|WOCO|TCCSA|NOACSC|NWOCA|M1|M2|M3|M4|M5)/?([^/]*)/?([^/]*)/?(.*)$ index.php?itc=${lc:$1}&instance=$2&library=$3&viewitem=$4 [L]
+RewriteRule ^([^/]*)/?([^/]*)/?([^/]*)/?(.*)$ index.php?itc=$1&instance=$2&library=$3&viewitem=$4 [L]

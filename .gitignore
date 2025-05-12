@@ -1,0 +1,14 @@
+*.zip
+harvest/
+images/
+logs/
+archive/
+bootstrap
+bs5/
+downloads/
+fa/
+icons/
+images/
+phpmailer/
+searchbox.php
+vendor/

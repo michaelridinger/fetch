@@ -1,0 +1,1 @@
+Fetch Version 1.5 - Release 20220909.0800&nbsp;<a href='https://www.infohio.org/resources/item/fetch' class='red-tooltip' target='_blank' data-toggle="tooltip" data-placement="left" title="About Fetch"><i class='fas fa-question-circle'></i></a>

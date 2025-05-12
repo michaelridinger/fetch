@@ -1,0 +1,1096 @@
+<?php
+	//added to Git repository 10.23.2024
+	//ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
+
+	// To display an alert on the site, set the sitealert status to 1=0 or 0=off.  Change the text of the alert
+	// by modifying the sitealert() function at the bottom of this file.
+	$sitealert=0;
+	$accessmodeclass="";	
+	$accessmode="";
+	header("Access-Control-Allow-Origin: *");
+	session_start();
+	if (isset($_POST['q'])) {
+		$_POST['q']=fixquery($_POST['q']);
+	}
+	// *** ACCESSIBILITY MODE *** 
+	if (!isset($_SESSION['accessibilitymode'])) {
+		$_SESSION['accessibilitymode']="N";
+	} 
+	if (isset($_POST['accmodeset'])) {
+		if ($_POST['accmodeset'] == "Y") {
+			$_SESSION['accessibilitymode']="Y";
+			$accmode="Y";
+			$accmodeclass=" class = 'acc' ";
+		} else {
+			$accmodclass="";
+			$accmode="N";
+			$_SESSION['accessibilitymode']="N";
+		}
+	} else {
+		$accmode=$_SESSION['accessibilitymode'];
+	}
+
+	if ($accmode == "Y") {
+		$_SESSION['color1'] = "#FFFFFF";
+		$_SESSION['color2'] = "#09c";
+		$_SESSION['fetchbg'] = "fetch_allgrades.png";
+		$accmodeclass=" class='acc' ";
+	} else {
+		$accmodeclass="";
+		if (isset($_SESSION['defaultcolor1'])) {
+			$_SESSION['color1'] = $_SESSION['defaultcolor1'];
+		}
+		if (isset($_SESSION['defaultcolor2'])) {
+			$_SESSION['color2'] = $_SESSION['defaultcolor2'];
+		}
+		if (isset($_SESSION['defaultfetchbg'])) {
+			$_SESSION['fetchbg'] = $_SESSION['defaultfetchbg'];
+		}
+	}
+	// *** DEBUG MODE ***	
+	if (isset($_GET['debug'])) {
+		if ($_GET['debug'] == "Y") {
+			setCookie("fetchdebug","Y",time()+3600);
+			echo "Fetch debug mode is now ON.";
+			exit;
+		} else {
+			setCookie("fetchdebug","N",time()+3600);
+			echo "Fetch debug mode is now OFF.";
+			exit;
+		}
+	}
+	if (isset($_COOKIE['fetchdebug'])) {
+		if ($_COOKIE['fetchdebug'] != 'Y') {
+			setCookie("fetchdebug","N",time()+3600);
+		} 
+	}
+
+	// *** DEBUG MODE ***
+	if (strpos("x".$_SERVER['QUERY_STRING'],"logout")) {
+		session_start();
+		$logouturl = $_SESSION['welcomepage'];
+		$_SESSION['itc']="";
+		$_SESSION['library']="";
+		$_SESSION['instance']="";
+		session_destroy();
+		unset($_SESSION);
+		logout($logouturl);
+	} else {
+
+		$status = initialize();
+		if ($status) {
+			gofetch();
+		} else {
+			nofetch();
+		}
+		// disabled for production
+		if (isset($_COOKIE['fetchdebug'])) {
+			if ($_COOKIE['fetchdebug'] == "Y") {
+				debug($status);
+			}
+		}	
+	}
+	//debug(1);
+	if ($_SESSION['q'] > "") {
+		echo "<script type='text/css'>initquery();</script>";
+	}
+	
+	function nofetch() {
+		// Log issue
+		global $sitealert;
+		if (isset($_SESSION['accessibilitymode'])) {
+			$accmode=$_SESSION['accessibilitymode'];
+		} elseif (isset($_SESSION['accmode'])) {
+			$accmode=$_SESSION['accmode'];
+		} else {
+			$accmode="";
+		}
+	?>
+	<html lang="en">
+		  <head>
+			<script async src="https://www.googletagmanager.com/gtag/js?id=G-6XMVSKDTXT"></script>
+			<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+  			<link href="/fa/css/all.css" rel="stylesheet">
+			<link rel="stylesheet" type="text/css" href="/bs5/css/bootstrap.min.css">
+			<script src="/bs5/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+			<script src="/js/custom.js" type="text/javascript"></script>
+			<?php if ($accmode == "Y") { ?>
+			<link rel="stylesheet" type="text/css" href="/css/custom.css">
+			<link rel="stylesheet" type="text/css" href="/css/dynamic_css.php">
+			<?php } else { ?>
+			<link rel="stylesheet" type="text/css" href="/css/custom.css">
+			<link rel="stylesheet" type="text/css" href="/css/dynamic_css.php">
+			<?php } ?>
+			<title>Fetch Library Catalog Search</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel='icon' href='/images/favicon.png' type='image/x-icon' sizes="16x16" />
+			<base href = "/" />
+
+		 </head>
+  
+		<body <?php echo $accmodeclass; ?>>
+		<div class='errorbox'>
+			<div class='errortitle' style='color: #fff'>Oops!  Fetch cannot find your library!</div>
+			<div class='errordescription' style='text-align:center'>Please let your teacher know Fetch is not working properly.</div>
+			<hr>
+			<div style='text-align:center;padding:15px'><a href='https://www.infohio.org/opac' class='btn btn-success btn-lg'>Find My Catalog</a></div>
+			<hr>
+			<?php
+				$uri = $_SERVER['REQUEST_URI'];
+				echo "<div style='text-align:center;color:#aaa;font-size:.7em'>https://fetch.infohio.org".$uri." is currently unavailable.</div>";
+				echo "<div style='text-align:center;padding:10px;'><a class='btn btn-danger' id='fetchlogbutton'>View Log</a></div>";
+				echo "<div id='fetchlog' style='display:none;color:#FFF'><hr>";
+				$logfile="";
+				$fp="";
+				$logfile = sprintf("%04d%02d%02d%02d%02d%02d%s",date("Y"),date("m"),date("d"),date("h"),date("i"),date("s"),session_id());
+				echo "<pre>";
+				print_r($_POST);
+				print_r($_SESSION);
+				echo "</pre>";	
+				echo "</div>";
+			?>
+		</div>
+		<?php sitealert($sitealert); ?>
+		</body>
+	</html>
+	<?php
+	}
+	
+	function gofetch() {
+		$validviews = array("viewitem","search","rp","visualsearch");
+		if (isset($_POST['viewitem'])) {
+			$_SESSION['view']="search";
+			$viewitemid=$_POST['viewitem'];
+		}
+		if (!isset($_SESSION['view'])) {
+			$_SESSION['view'] = "search";
+		}
+		if (!in_array($_SESSION['view'],$validviews)) {
+			$_SESSION['view']="search";
+			$view="search";
+		} else {
+			$view=$_SESSION['view'];
+		}
+    		if (is_array($_POST) || $_SESSION['view']=="rp") {
+     	           $posted="Y";
+      	 	} else {
+      	 	         $posted="";
+	        }
+		echo "<input type='hidden' name='posted' id='posted' value='".$posted."'>";
+		global $sitealert;
+		global $views;
+		global $itc;
+		global $inst;
+		global $lib;
+		$_SESSION['cur'] = sprintf("%04d%02d",date("Y"),date("m"));
+		if (isset($_SESSION['isearchprofile'])) {
+			if ($_SESSION['isearchprofile'] <= "") {
+				if (isset($_SESSION['itc']) && isset($_SESSION['instance']) && isset($_SESSION['library'])) {
+					$isearchprofile=substr($_SESSION['itc'],0,4)."_".$_SESSION['instance']."_".$_SESSION['library'];
+				} else {
+					$isearchprofile=$_SESSION['isearchprofile'];
+				}
+			} else {
+				$isearchprofile=$_SESSION['isearchprofile'];
+			}
+		} else {
+			if (isset($_SESSION['itc']) && isset($_SESSION['instance']) && isset($_SESSION['library'])) {
+				$isearchprofile=substr($_SESSION['itc'],0,4)."_".$_SESSION['instance']."_".$_SESSION['library'];
+			}
+				
+		}
+		if ($isearchprofile) {
+			$_SESSION['logged']=$_SESSION['cur'];
+			$rlog=file_get_contents("https://fetch.infohio.org/stats/log.php?isearchprofile=".$isearchprofile."&opac=F");
+		}
+		//	
+		if ($view == "rp") {
+			$mmrp="catmenuactive";
+		} elseif ($view == "search") {
+			$mmse="catmenuactive";
+		} elseif ($view == "visualsearch") {
+			$mmvs="catmenuactive";
+		} else {
+			$mmse="catmenuactive";
+		}
+		?>
+		<html lang="en">
+		  <head>
+			<script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+			<link href="/fa/css/all.css" rel="stylesheet">
+			<link rel="stylesheet" type="text/css" href="/bs5/css/bootstrap.min.css">
+			<script src="/bs5/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+			<script src="/js/custom.js" type="text/javascript"></script>
+			<link rel="stylesheet" type="text/css" href="/css/custom.css">
+			<link rel="stylesheet" type="text/css" href="/css/dynamic_css.php">
+			<title><?php echo $_SESSION['distname']." (".$_SESSION['itc']."/".$_SESSION['instance'].")"; ?> Catalog Search</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel='icon' href='/images/favicon.png' type='image/x-icon' sizes="16x16" />
+			<base href = "/" />
+		 </head>
+		<?php if ($_SESSION['accessibilitymode'] == "Y") { echo "<body class='acc'>"; } else { echo "<body>"; } ?>
+		<?php sitealert($sitealert); ?>
+		<?php if (strpos($_SESSION['fetchbg'],".mp4")) { ?>
+			<video id="background-video" autoplay loop muted>
+			<source src="https://fetch.infohio.org/images/background/kidsvidlong.mp4" type="video/mp4">
+			</video>
+		<?php } ?>		
+
+		<?php // ************************* NORMAL DISPLAY ************************// ?>
+		
+		<input type='hidden' name='widgetq' id='widgetq' value='<?php echo $_POST['widget']; ?>'>
+		  <div class="modal fade " id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="View Details" aria-hidden="true">
+		  <div class="modal-dialog modal-xl" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<div class="modal-title" id="detailsModalTitle" style='color: #AA0000;font-size:2em;font-weight:900'></div>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true"><i class='fas fa-times-circle' style='font-size:2em;color:#AA0000'></i></span>
+				</button>
+			  </div>
+			  <div class="modal-body" id='detailsModalBody'>
+				<div class="spinner-border text-primary" role="status">
+					<span class="sr-only">Loading...</span>
+				</div>
+			  </div>
+			  <div class="modal-footer" id='detailsModalFooter'>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+
+		<div id='browser'>
+			<div class='catalogheader d-none xd-md-block' id='opacheader'>
+				<div class='row align-middle'>
+					<div class='col-12 text-center'>
+						<?php 
+							if ($_SESSION['mascot'] > "") {
+								$mascot = $_SESSION['mascot'];
+								$mascot = str_replace("http://","",$mascot);
+								$mascot = str_replace("https://","",$mascot);
+								$mascot = trim($mascot);
+								if (substr($mascot,0,1) == "/") {
+									if (strpos($mascot,"data.infohio.org")) {
+										$mascot = "https:/".$mascot;
+									} else {
+										$mascot = "https://data.infohio.org".$mascot;
+									}
+								} else {
+									if (strpos($mascot,"infohio.org")) {
+										$mascot="https://data.infohio.org/".$mascot;
+									} else {
+										$mascot = "https://".$mascot;
+									}
+								}
+								echo "<img src='".$mascot."' style='margin-right:7px' class='mascot'>";
+							}
+							if ($_SESSION['libname'] > "") {
+								echo $_SESSION['libname'];
+							} elseif ($_SESSION['distname'] > "") {
+								echo $_SESSION['distname'];
+							} else {
+								echo "Library Search";
+							}
+						?>
+					</div>
+				</div>
+			</div>
+			<?php if ($_SESSION['accessibilitymode'] != "Y") { ?>
+			<div class="sticky-top">
+				<div class='cat-mainmenu mb-4' style="positioN:relative">
+					<div class="row mt-1">
+						<div class="col text-center libname" style="text-align:center">
+						<?php
+							$logo=$_SESSION['mascot'];
+							$logo=str_replace("http://","https://",$logo);
+							if (!strpos($logo,"ttps://") && strlen($logo) > 3) {
+								$logo="https://data.infohio.org".$logo;
+								$_SESSION['mascot']=$logo;
+							} 
+							if (strlen($logo) > 3) {
+								echo '<img src="'.$logo.'" style="height: 30px; width: auto; border-radius:5px; margin-right:7px;">';
+							}
+						
+							echo "<span id='fetchdistname'>";
+							if ($_SESSION['libname'] > "") {
+								echo $_SESSION['libname'];
+							} elseif ($_SESSION['distname'] > "") {
+								echo $_SESSION['distname'];
+							} else {
+								echo "Library Search";
+							}
+							echo "</span>";
+						?>
+						</div>
+					</div>
+					<div class="row mt-1 mb-1">
+						<div class="col text-center btn-bar" >
+							<a class='btn btn-lg btn-success red-tooltip <?php echo $mmse; ?> menu_newsearch' id='newsearch' data-toggle="tooltip" data-placement="bottom" title="New Search"><i class='fas fa-search'></i><div style="padding-top:3px;font-size:.5em;line-height:1.1em;"><span class='d-md-block d-none'>New<br>Search<span></div></a>
+<?php if ($_SESSION['hiderp'] != "Y") { ?>
+							<a class='btn btn-lg btn-info menu_rp <?php echo $mmrp; ?>' id='rp' name='rp' data-toggle="tooltip" data-placement="bottom" title="Reading Level Search"><i class='fas fa-book-reader'></i><div style="padding-top:3px;font-size:.5em;line-height:1.1em;"><span class='d-md-block d-none'>Reading<br>Level</span></div></a>
+<?php } ?>
+<?php if ($_SESSION['hidevs'] != "Y") { ?>
+							<a id='vstoggle2' class='btn btn-lg btn-warning menu_vs <?php echo $mmvs; ?>' data-toggle="tooltip" data-placement="bottom" title="Visual Search"><i class="fas fa-paw"></i><div style="padding-top:3px;font-size:.5em;line-height:1.1em;"><span class='d-md-block d-none'>Visual<br>Search</span></div></a>
+<?php } ?>
+							<a data-toggle="tooltip" data-placement="bottom" title='Logout' class='btn btn-lg btn-danger' href="/?logout="><i style='color: #FFF;' class='fas fa-sign-out-alt'></i><div style="padding-top:3px;font-size:.5em;line-height:1.1em;"><span class='d-md-block d-none'>Log<br>Out</span></div></a>
+						</div>
+					</div>
+					<div class="row" style='position:relative;padding-bottom:10px;'>
+						<i class='fas fa-angle-double-up' style='font-size:32px' id='gohome'  data-toggle="tooltip" data-placement="bottom" title="Go back to the Top"></i>
+					</div>
+				</div>
+			</div>	
+			<?php } else { ?>
+			<div class="sticky-top">
+				<div class='cat-mainmenu cat-mainmenu-vs mb-4' style="positioN:relative">
+					<div class="row mt-1">
+						<div class="col text-center libname" style="text-align:center">
+						<?php 
+							if ($_SESSION['mascot'] > "") {
+								echo '<img src="'.$_SESSION['mascot'].'" style="height: 30px; width: auto; border-radius:5px; margin-right:7px;">';
+							}
+						
+							echo "<span id='fetchdistname'>";
+							if ($_SESSION['libname'] > "") {
+								echo $_SESSION['libname'];
+							} elseif ($_SESSION['distname'] > "") {
+								echo $_SESSION['distname'];
+							} else {
+								echo "Library Search";
+							}
+							echo "</span>";
+						?>
+						</div>
+					</div>
+					<div class="row mt-1 mb-1">
+						<div class="col cat-mainmenu-vs text-center btn-bar" >
+							<a class='btn btn-lg btn-acc red-tooltip btn-success <?php echo $mmse; ?> menu_newsearch' id='newsearch' data-toggle="tooltip" data-placement="bottom" title="New Search"><span class='d-block'>New<br>Search</a>
+							<a class='btn btn-lg btn-acc red-tooltip btn-info <?php echo $mmrp; ?> menu_rp' id='rp' data-toggle="tooltip" data-placement="bottom" title="Reading Level Search"><span class='d-block'>Reading<br>Level</a>
+							<a id='vstoggle2' class='btn btn-lg btn-acc menu_vs btn-warning <?php echo $mmvs; ?>' data-toggle="tooltip" data-placement="bottom" title="Visual Search"><span class='d-block'>Visual<br>Search</a>
+							<a data-toggle="tooltip" data-placement="bottom" title='Logout' class='btn btn-lg btn-acc btn-danger' href="/?logout="><span class='d-block'>Log<br>Out</span></a>
+						</div>
+					</div>
+					<div class="row" style='position:relative;padding-bottom:10px;'>
+						<i class='fas fa-angle-double-up' style='font-size:32px' id='gohome'  data-toggle="tooltip" data-placement="bottom" title="Go back to the Top"></i>
+					</div>
+				</div>
+			</div>
+			<?php } ?>	
+		</div>
+			<div class='searchformcontent'>
+				<?php
+					if (in_array($_SESSION['view'],$views)) {
+						include("view_".$_SESSION['view'].".php");
+					} else {
+						echo $_SESSION['view'];
+					}
+				?>
+			</div>
+		</div>
+		<input type='hidden' id='moreisearchresults' value='<?php echo $_SESSION['searchsource']; ?>INFOHIO<?php echo $_SESSION['isearchprofile']; ?>INFOHIO<?php echo $_SESSION['isearchserver']; ?>INFOHIO<?php echo $_SESSION['q']; ?>INFOHIO'>
+		<input type='hidden' name='isearchurl' id='isearchurl' value="<?php echo $_SESSION['isearchurl']; ?>">
+		<input type='hidden' name='isearchconnector' id='isearchconnector' value="<?php echo $_SESSION['searchsource']."|".$_SESSION['isearchprofile']."|".$_SESSION['isearchserver']; ?>">
+		<input type='hidden' name='ga_isearchprofile' id='ga_isearchprofile' value="<?php echo $_SESSION['isearchprofile']; ?>">
+		<input type='hidden' name='ga_itc' id='ga_itc' value="<?php echo $_SESSION['itc']; ?>">
+		<input type='hidden' name='ga_inst' id='ga_inst' value="<?php echo $_SESSION['instance']; ?>">
+		<input type='hidden' name='ga_lib' id='ga_lib' value="<?php echo $_SESSION['library']; ?>">
+		<input type='hidden' name='oq' id='oq' value="<?php echo $_SESSION['q']; ?>">
+		<input type='hidden' name='dym' id='dym'>
+		<form id='stform' action=".<?php echo $_SERVER['REQUEST_URI']; ?>" method="POST" name="stform">
+			<input type='hidden' name='view' id='view' value=''>
+			<input type='hidden' name='action' id='action' value=''>
+			<input type='hidden' name='lastviewed' id='lastviewed' value=''>
+		</form>
+		<div style='position: fixed; right: 20px; bottom: 5px; text-align: right; font-size: 1em; padding-right:10px; color: rgba(255,255,255,.5)'>
+ <div>
+                        <?php
+                                if ($_SESSION['accessibilitymode'] != "Y") {
+                                        echo "<a id='accmodebutton' class='badge-pill badge-secondary' style='color: #ccc'><i class='fas fa-toggle-off'></i>&nbsp;OFF</a>";
+                                        echo "<form method='POST' action='".$_SESSION['fetchurl']."' id='accmodeform'><input type='hidden' name='accmodeset' id='accmodeset' value='Y'></form>";
+                                } else {
+                                        echo "<a class='badge-pill badge-success' data-toggle='tooltip' data-placement='left' title='BETA: Disable Accessibility Mode' id='accmodebutton' style='color: #aaffaa;'><i class='fas fa-toggle-on'></i>&nbsp;ON</a>";
+                                        echo "<form method='POST' action='".$_SESSION['fetchurl']."' id='accmodeform'><input type='hidden' name='accmodeset' id='accmodeset' value='N'></form>";
+                                }
+                        ?>
+                        </div>
+
+		</div>
+		</body>
+		</html>
+		<?php
+	}
+	
+	function initialize() {
+		// *** Set global itc, instance, lib, and view variable ***
+		global $itc;
+		global $inst;
+		global $lib;
+		global $views;
+		global $instance;
+		global $library;
+		global $utc;
+		global $uitc;
+	
+		if (!isset($_SESSION['copyright'])) {
+			$_SESSION['copyright'] = file_get_contents("version.txt");
+		} else {	
+			if ($_SESSION['copyright'] <= "") {
+				$_SESSION['copyright'] = file_get_contents("version.txt");
+			}
+		}
+
+		$auth=1;
+		$gitc = $_GET['itc'];
+		$gins = $_GET['instance'];
+		$glib = $_GET['library'];
+		$kkkk = $_GET['viewitem'];
+		if (strlen($kkkk) > 0) {
+			$_SESSION['viewitem']=$kkkk;
+			echo "<form id='viewitemform' method='POST' action='/".strtolower($gitc."/".$gins."/".$glib."/")."'>";
+			echo "<input type='hidden' name='viewitem' id='viewitem' value='".$kkkk."'>";
+			echo "</form><script type='text/javascript'>document.getElementById('viewitemform').submit();</script>";
+		}
+
+		// *** INITIALIZE SESSION VARS
+		$cnt=0;
+		if (!isset($_SESSION['defaultview'])) {
+			$_SESSION['defaultview']="search";
+		}
+		if (!isset($_SESSION['wsurl'])) { $_SESSION['wsurl']=""; }
+		if (!isset($_SESSION['itc'])) { $_SESSION['itc']=""; }
+		if (!isset($_SESSION['catuser'])) { $_SESSION['catuser']=""; }
+		if (!isset($_SESSION['fetchvs'])) { $_SESSION['fetchvs']=""; }
+		if (!isset($_SESSION['rlvlsearch'])) { $_SESSION['rlvlsearch']=""; }
+		if (!isset($_SESSION['fetchbookriver'])) { $_SESSION['fetchbookriver']=""; }
+		if (!isset($_SESSION['fetchvs'])) { $_SESSION['fetchvs']=""; }
+		if (!isset($_SESSION['q'])) { $_SESSION['q']=""; }
+		if (!isset($_SESSION['view'])) { $_SESSION['view']=""; }
+
+		if (isset($_POST['page'])) {
+			if ($_POST['page'] == "1") { $_SESSION['view'] = "search"; }
+		}
+		if (isset($_POST['q'])) {
+			if ($_POST['q'] > "") {
+				$_SESSION['view']="search"; 
+			}
+		} else {
+			if ($_SESSION['defaultview'] == "v") {
+				$_SESSION['view']="visualsearch";
+				$_SESSION['q']="";
+			} elseif ($_SESSION['defaultview'] == "r") {
+				$_SESSION['view']="rp";
+			} else {
+				$_SESSION['view']="search";
+			}
+		}
+		// ARE WE STARTING A NEW SESSION?
+		if ($_SESSION['wsurl'] <= "" || ($gitc && $gins && $glib > "") || ($_POST['library'] && $_POST['instance'] && $_POST['library'] > "") || strpos($_SESSION['itc'],".") || strpos($_SESSION['library'],".") || strpos($_SESSION['instance'],".")) {
+			// THIS SECTION OF CODE WAS ADDED TO ALLOW SETTING THE CURRENT SESSION
+			// USING A POST OR GET
+			if (isset($_POST['itc']) && isset($_POST['instance']) && isset($_POST['library'])) {
+				if ($_POST['itc']>"" && $_POST['instance'] > "" && $_POST['library'] > "") {
+					$itc=$_POST['itc'];
+					$inst=$_POST['instance'];
+					$lib=$_POST['library'];
+				}
+			} elseif ($gitc>"" && $gins > "" && $glib > "") {
+				$itc=strtolower($gitc);
+				$inst=$gins;
+				$lib=$glib;
+			} elseif ($uitc > "" && $uinstance > "" && $ulibrary > "") {
+				$itc=$uitc;
+				$inst=$uinstance;
+				$lib=$ulibrary;
+			}
+			// Do we have everything we need to connect?  ITC, Instance, Library?  If so, proceed.  Otherwise, stop.
+			if ($lib <= "" || $inst <= "" || $itc <= "") {
+				return 0; // STOP!!!
+			} else {
+				// PROCEED
+				$inst = preg_replace("/[^a-zA-Z0-9]/","",$inst);
+				$itc = preg_replace("/[^a-zA-Z]0-9/","",$itc);
+				$lib = strtoupper(preg_replace("/[^a-zA-Z]0-9/","",$lib));
+				$switchlibs=0;
+				if ($itc == "hcca" ) {$itc = "hcc"; }
+				if ( strtolower($itc) != strtolower($_SESSION['itc']) || strtolower($inst) != strtolower($_SESSION['instance']) || strtolower($lib) != strtolower($_SESSION['library']) ) {
+					include("/var/www/html/dataconnect.php");
+					$switchlibs=1;
+					
+					$_SESSION['welcomepage'] = "https://www.infohio.org/opac/?".$itc."/".$inst."/".$lib;
+				
+					$defaultlib = "";
+					$_SESSION['itc'] = strtoupper($itc);
+					$_SESSION['instance'] = strtoupper($inst);
+					$_SESSION['library'] = strtoupper($lib);
+					// USED IF DISTRICT ACCESS ENABLED
+					$dist_access=0;	
+					if ($dist_access > 0) {
+						if ($_SESSION['library'] == "DIST") { $_SESSION['library'] = "%%"; }
+					}
+					
+					// GET LIB DETAILS FROM PDR
+					$q=		"select itc.ilshost,itc.wshost,instance.webserviceport,instance.isearchserver,library.url_mascot,instance.isearchprofile as iprofile,library.isearchprofile,instance.instance,instance.longname as distname,instance.mascot,library.settings as libset,library.longname as libname,library.library ";
+					$q.=	"from itc,instance,library where itc.id=instance.itcid and instance.id=library.instanceid and itc.itc like \"".$itc."\" and ";
+					$q.=	"instance.instance like \"".$inst."\" and library.library like \"".$lib."\" and library.instanceid = instance.id and instance.status != 0 and library.status > 0 order by library like 'dist' desc,library.longname limit 1";
+					$r=$datadb->query($q);
+					$c=$r->num_rows;
+					unset($liblist);
+					if ($c > 0) {
+						$auth=1;
+						$f = $r->fetch_assoc();
+						$code=$f['library'];
+						if ($code == "DIST" && $altcode > "") {
+							$code=$altcode;
+						}
+						if (isset($f['isearchprofile'])) {
+							$isearchprofile=$f['isearchprofile'];
+						} else {
+							$isearchprofile="";
+						}
+						$profileparts = explode("_",$isearchprofile);
+						$searchsource=strtoupper($profileparts[0]."_".$profileparts[1]."_ILS");
+						if (isset($f['isearchserver'])) {
+							$isearchserver=$f['isearchserver'];
+						}
+						if (isset($f['ilshost'])) {
+							$ilshost=$f['ilshost'];
+						}
+						if (isset($f['wshost'])) { $wshost=$f['wshost']; }
+							$protocol = "https";
+							if (isset($f['webserviceport'])) { $port=$f['webserviceport']+(8445-8090); }
+						if (isset($f['mascot'])) { $mascot=$f['mascot']; }
+						if (isset($f['url_mascot'])) { $libmascot=$f['url_mascot']; }
+						if (strlen($libmascot ?? "") > 15) {
+							$mascot=$libmascot;
+						}
+						if (isset($f['instance'])) { $instancecode=strtolower($f['instance'] ?? ""); }
+						if (isset($f['libname'])) { $name=$f['libname']; $libname=$f['libname'];}
+						if (isset($f['distname'])) { $distname=$f['distname']; }
+						if (isset($f['library'])) { $libcode=$f['library']; }
+						if ($name <= "") {
+							$name = $distname;
+							$_SESSION['libname'] = $name;
+						} elseif ($distname <= "") {
+							$distname = $name;
+							$_SESSION['distname']=$name;
+						}
+						if(isset($f['libset'])) { $settings=json_decode($f['libset'],true); }
+						if (isset($settings['isearch']['fetchvs'])) {
+							$_SESSION['fetchvs'] = $settings['isearch']['fetchvs'];
+						} else {
+							$_SESSION['fetchvs'] = "";		
+						}
+						if ($_SESSION['fetchvs'] <= "") {
+							$_SESSION['fetchvs']="Y";
+						}
+                                                if (isset($settings['isearch']['fetchxrp'])) {
+                                                        if ($settings['isearch']['fetchxrp'] == "Y") {
+                                                                $_SESSION['hiderp'] = "Y";
+                                                        } else {
+                                                                $_SESSION['hiderp'] = "N";
+                                                        }
+                                                }
+                                                if (isset($settings['isearch']['fetchxvs'])) {
+                                                        if ($settings['isearch']['fetchxvs'] == "Y") {
+                                                                $_SESSION['hidevs'] = "Y";
+                                                        } else {
+                                                                $_SESSION['hidevs'] = "N";
+                                                        }
+                                                }
+
+						if (isset($settings['isearch']['fetchlazyload'])) {
+							if ($settings['isearch']['fetchlazyload'] != "N") {
+								$_SESSION['lazyload']="Y";
+							} else {
+								$_SESSION['lazyload']="N";
+							}
+						} else {
+							$_SESSION['lazyload']="Y";
+						}
+						if (isset($settings['isearch']['rlvlsearch'])) {
+							$_SESSION['fetchrp'] = $settings['isearch']['rlvlsearch'];
+						} else {
+							$_SESSION['fetchrp'] = "";
+						}
+						if ($_SESSION['fetchrp'] <= "") {
+							$_SESSION['fetchrp']="Y";
+						}
+
+						$fetchurl=strtolower("/".$_SESSION['itc']."/".$_SESSION['instance']."/".$_SESSION['library']);
+						$_SESSION['fetchurl']=$fetchurl;
+
+						if (isset($settings['isearch']['isrchconnecter'])) {
+							$_SESSION['fetchis'] = $settings['isearch']['isrchconnecter'];
+						} else {
+							$_SESSION['fetchis'] = "";
+						}
+
+						if (isset($settings['isearch']['isrchconnecterholds'])) {
+							$_SESSION['fetchish'] = $settings['isearch']['isrchconnecterholds'];
+						} else {
+							$_SESSION['fetchish'] = "";
+						}
+
+						if (isset($settings['isearch']['fetchsearchlibrary'])) {
+							$_SESSION['searchlibrary'] = $settings['isearch']['fetchsearchlibrary'];
+							$_SESSION['podlibrary'] = $settings['isearch']['fetchsearchlibrary'];
+						} else {
+							$_SESSION['searchlibrary'] = "";
+							$_SESSION['podlibrary'] = "";
+						}
+
+						if (isset($settings['isearch']['fetchbookriver'])) {
+							$_SESSION['fetchbookriver'] = $settings['isearch']['fetchbookriver'];
+						} else {
+							$_SESSION['fetchbookriver'] = "";
+						}
+
+							if (isset($settings['isearch']['fetchbg'])) {
+								$bg = $settings['isearch']['fetchbg'];
+								$bgarr=array("fetch_allgrades.png","eclipse.png","fetch_moon.png","fetch_grunge.png","fetch_stars.png","dark.png","nobg.png","light.png","kids.jpg","kidsvidlong.mp4","series.safari","customimage");
+								if ($bg == "customimage") {
+									if ($settings['isearch']['fetchbgcustom'] > "") {
+										$_SESSION['fetchbg'] = $settings['isearch']['fetchbgcustom'];
+									}
+								} elseif (!in_array($bg,$bgarr)) {
+echo "**";
+									$_SESSION['fetchbg']="https://fetch.infohio.org/images/background/dark.png";
+								} elseif ($bg == "customimage") {
+									$_SESSION['fetchbg']=$settings['isearch']['fetchbgcustom'];
+								} else {
+									$_SESSION['fetchbg']="https://fetch.infohio.org/images/background/".$bg;
+								}
+								$bgpts = explode(".",$bg);
+								if ($bgpts[0] == "series") {
+									$_SESSION['fetchbgseries']=$bgpts[1];
+									$_SESSION['fetchbg']="default";
+								}
+							} else {
+								$_SESSION['fetchbgseries']="";
+								$_SESSION['fetchbg']="https://fetch.infohio.org/images/background/dark.png";
+							}
+							$_SESSION['defaultfetchbg'] = $_SESSION['fetchbg'];
+							if ($_SESSION['accessibilitymode'] == "Y") {
+								$_SESSION['fetchbg']="https://fetch.infohio.org/images/background/fetch_allgrades.png";
+							}
+						if (isset($_POST['q'])) {
+							if ($_POST['q'] > "") {
+								$_SESSION['q']=$_POST['q'];
+							} else {
+								$_SESSION['q']="";
+							}
+						} elseif (isset($_SERVER['QUERY_STRING'])) {
+							if ($_SERVER['QUERY_STRING'] > "") {
+								$_SESSION['q']=$_SERVER['QUERY_STRING'];	
+							} else {
+								$_SESSION['q']="";
+							}
+						}
+
+						$color1="";
+						$color2="";
+						if (isset($settings['isearch']['primarycolor'])) {
+							$color1 = $settings['isearch']['primarycolor'];
+						}
+						if (isset($settings['isearch']['secondarycolor'])) {
+							$color2 = $settings['isearch']['secondarycolor'];
+						}
+						if ($color1 <= "") {
+							$color1 = "#306d9c";
+							$color2 = "#ffff93";
+						}
+						$_SESSION['defaultcolor1'] = $color1;
+						$_SESSION['defaultcolor2'] = $color2;
+						if (strtoupper($f['library'] ?? "") == $lib) {
+							$defaultlib = $lib;
+							if (isset($f['libname'])) {
+								$libname = $f['libname'];
+							} else {
+								$libname="";
+							}
+							if (isset($f['library'])) {
+								$libcode = $f['library'];
+							} else {
+								$libcode="";
+							}
+						}
+						if ($name > "") {
+							$liblist[$code]=$name;
+							$cnt++;
+						}
+						$_SESSION['color1']=$color1;
+						$_SESSION['color2']=$color2;
+						$_SESSION['isearchprofile']=$isearchprofile;
+						if (isset($f['library'])) {
+							$_SESSION['homelibrary']=$f['library'];
+						}
+						$_SESSION['q']="";
+						$_SESSION['distname']=$distname;
+						if ($isearchserver > "" && $isearchprofile > "") {
+							$_SESSION['isearchurl']=strtolower("https://".$isearchserver.".infohio.org/client/".$isearchprofile."/search/results/");
+						} else {
+							$_SESSION['isearchurl']="https://isearch.infohio.org/search/results/";
+						}
+						$_SESSION['isearchserver']=$f['isearchserver'];
+						if ($libname <= "" && isset($_SESSION['distname'])) {
+							$libname = $_SESSION['distname'];
+						}
+
+						$_SESSION['libname']=$libname;
+						$_SESSION['mascot']=$mascot;
+						$_SESSION['wsport']=$port;
+						$_SESSION['wsurl']=$protocol."://".$wshost.":".$port."/".strtolower($instancecode."ws");
+						$_SESSION['library']=$libcode;
+						$_SESSION['liblist']=$liblist;
+						$_SESSION['homelibrary']=$libcode;
+						$_SESSION['searchresults']="";
+						$_SESSION['bucketlist']=0;
+						$_SESSION['groupset']=$settings['isearch']['fetchallgroups'];
+						$_SESSION['defaultview']=$settings['isearch']['fetchdefault'];
+				
+						if (isset($settings['isearch']['fetchdefault'])) {
+							if ($settings['isearch']['fetchdefault'] == "v") {
+								if (isset($_POST['q'])) {
+									if ($_POST['q'] <= "") {
+										$_SESSION['view']="visualsearch";
+										$_SESSION['q']="";
+									} else {
+										$_SESSION['view']="search";
+										$_SESSION['q']=$_POST['q'];
+									}
+								}
+							} elseif ($settings['isearch']['fetchdefault'] == "r") {
+								$_SESSION['view']="rp";
+								$_SESSION['q']="";
+							} else {
+								$_SESSION['q']="";
+								$_SESSION['view']="";
+							}
+						} else {
+							$_SESSION['view']="search";
+						}
+						$_SESSION['searchsource']=$searchsource;
+						$_SESSION['isearchserver']=$isearchserver;
+						
+						if ($isearchserver > "" && $isearchprofile > "") {
+							$_SESSION['isearchajax']=strtolower("https://".$isearchserver.".infohio.org/client/rss/hitlist/".$isearchprofile."/qu=");
+						} else {
+							$_SESSION['isearchajax']="";
+						}
+					
+						if ($_SESSION['homelibrary'] > "" && strtoupper($_SESSION['homelibrary']) != "DIST" && strtoupper($_SESSION['homelibrary']) != "DISTRICT") {
+							$_SESSION['headers'] = 	array(
+								"Accept: application/json",
+								"Content-type: application/json",
+								"SD-Preferred-Role: GUEST",
+								"sd-originating-app-id: catalogsearch",
+								//"sd-working-library: ".$_SESSION['library'],
+								//"SD-Working-LibraryID: ".$_SESSION['library'],
+								"x-sirs-clientID: DS_CLIENT"
+							);
+						}
+						else {
+							$_SESSION['headers'] = 	array(
+								"Accept: application/json",
+								"Content-type: application/json",
+								"SD-Preferred-Role: GUEST",
+								"sd-originating-app-id: catalogsearch",
+								"x-sirs-clientID: DS_CLIENT"
+							);
+						}
+						// GET LIBRARY GROUPS
+						$_SESSION['searchlibrary'] = $settings['isearch']['fetchsearchlibrary'];
+						$_SESSION['podlibrary'] = $settings['isearch']['fetchsearchlibrary'];
+						if (strlen($_SESSION['searchlibrary'] < 2)) {
+							$_SESSION['searchlibrary'] == $_SESSION['library'];
+						}
+						if ($switchlibs || $_SESSION['libgroup'] <= "") {
+							$libgroupurl = $_SESSION['wsurl']."/policy/searchGroup/simpleQuery?key=*&includeFields=libraryList,translatedDescription,displayName";
+							$libgroups = curl_init($libgroupurl);
+							$heads = 	array(
+								"Accept: application/json",
+								"Content-type: application/json",
+								"sd-originating-app-id: catalogsearch",
+								"x-sirs-clientID: DS_CLIENT"
+							);
+							curl_setopt($libgroups, CURLOPT_POST, 0);
+							curl_setopt($libgroups, CURLOPT_RETURNTRANSFER, true);
+							curl_setopt($libgroups, CURLOPT_SSL_VERIFYPEER, 0); // On dev server only!
+							curl_setopt($libgroups, CURLOPT_HTTPHEADER, $heads);
+							$response = curl_exec($libgroups);
+							$arr = json_decode($response,true);
+							$searchlibfound=0;
+							foreach ($arr as $key => $v) {
+								$policy = $v['key'];
+								if (strtolower($policy) == strtolower($_SESSION['searchlibrary'])) {
+									unset($libgroup);
+									$libgroup = array();
+									$searchlibfound=1;
+									foreach ($v['fields']['libraryList'] as $kk => $vv) {
+										$libgroup[] = strtoupper($vv['key']);
+									}
+									$_SESSION['libarr'] = $libgroup;
+								}
+							}
+							$_SESSION['podlibrary'] = $settings['isearch']['fetchsearchlibrary'];
+							if ($searchlibfound < 1) {
+								$_SESSION['libarr'][] = $_SESSION['library'];
+								$_SESSION['searchlibrary'] = $_SESSION['library'];
+							}
+						}
+						if ($switchlibs > 0) {
+							$_SESSION['rls']="Y";
+							$_SESSION['rlrecs']=0;
+							include("dbconnect.php");
+							$tbl=strtolower(substr($itc,0,4)."_".$_SESSION['instance']);
+							$itc = $_SESSION['itc'];
+							if ($itc == "CONNECT") { 
+								$itc2 = "NCC";
+							}
+							if ($itc == "HCC") {
+								$itc2 = "HCCA";
+							}
+							// Check to see if table exists
+							$qx="select count(*) as cnt from information_schema.tables where table_schema = database() and table_name='".$tbl."'";
+							$rx=$dbwww->query($qx);
+							$fx=$rx->fetch_assoc();
+							if (isset($fx['cnt'])) {
+								if ($fx['cnt'] > "0") {
+
+									$qx="select count(*) as cnt from ".$tbl;
+									$rx=$dbwww->query($qx);
+									$fx=$rx->fetch_assoc();
+									if (isset($fx['cnt'])) {
+										$_SESSION['rlrecs']=$fx['cnt'];
+									} else {
+										$_SESSION['rlrecs']=0;
+									}
+									if (isset($fx['fp'])) {
+										$_SESSION['rlfp']=$fx['fp'];
+									} else {
+										$_SESSION['rlfp']="";
+									}
+									$_SESSION['rls']="Y";
+								} else {
+									$_SESSION['rls']="N";
+								}
+							} else {
+								$_SESSION['rls']="N";
+							}
+						}
+						// GET LIB NAMES
+						if ($switchlibs || count($_SESSION['libnames']) < 1) {
+							$libsurl = $_SESSION['wsurl']."/policy/library/simpleQuery?key=*";
+							$libs = curl_init($libsurl);
+							$heads = 	array(
+								"Accept: application/json",
+								"Content-type: application/json",
+								"sd-originating-app-id: catalogsearch",
+								"x-sirs-clientID: DS_CLIENT"
+							);
+							curl_setopt($libs, CURLOPT_POST, 0);
+							curl_setopt($libs, CURLOPT_RETURNTRANSFER, true);
+							curl_setopt($libs, CURLOPT_SSL_VERIFYPEER, 0); // On dev server only!
+							curl_setopt($libs, CURLOPT_HTTPHEADER, $heads);
+							$response = curl_exec($libs);		
+							$arr = json_decode($response,true);
+							unset($libnames);
+							$libnames = array();
+							foreach ($arr as $key => $v) {
+								$lc = $v['key'];
+								$ln = $v['fields']['description'];
+								$libnames[$lc]=$ln;
+							}
+							$_SESSION['libnames']=$libnames;
+						}
+						// GET ITEM GROUPS
+						$_SESSION['fetchgroups']=array();
+						unset($_SESSION['fetchgroups']);
+						$_SESSION['fetchgroups']=array();
+						$selectedgroups=$settings['isearch']['fetchitemgroups'];
+						if (!is_array($selectedgroups)) {
+							$selectedgroups=array("EASY","FICTION","NONFICTION","BIOGRAPHY");
+						}
+						if ($switchlibs || $_SESSION['itemgroups'] <= "") {
+							$itemgroupurl = $_SESSION['wsurl']."/policy/itemType/simpleQuery?key=*";
+							$getgroups = curl_init($itemgroupurl);
+							curl_setopt($getgroups, CURLOPT_POST, 0);
+							curl_setopt($getgroups, CURLOPT_RETURNTRANSFER, true);
+							curl_setopt($getgroups, CURLOPT_SSL_VERIFYPEER, 0); // On dev server only!
+							curl_setopt($getgroups, CURLOPT_HTTPHEADER, $_SESSION['headers']);
+							$gresponse=curl_exec($getgroups);
+							$_SESSION['itemgroupjson']=$gresponse;
+							$grouplist=json_decode($gresponse,true);
+							unset($groups);
+							$groups=array();
+							$groupcount=0;
+							unset($fetchgroups);
+							$fetchgroups=array();
+							foreach ($grouplist as $key => $val) {
+								$code=$val['key'];
+								$pol=$val['fields']['policyNumber'];
+								$dname=$val['fields']['displayName'];
+								$desc = $val['fields']['description'];
+								if (!strpos("x".strtoupper($code),"KNOWN")) {
+									$groups[$code]['description']=$desc;
+									$groups[$code]['policyNum']=$pol;
+									$groupcount++;
+									if (in_array($code,$selectedgroups)) {
+										$fetchgroups[$code]=$desc;
+									}
+								}
+							}
+							$_SESSION['itemgroups']=$groups;
+							asort($fetchgroups);
+							$_SESSION['fetchgroups']=$fetchgroups;
+						}
+						
+						$_SESSION['groups'] = array("EASY","FICTION","NONFICTION","BIOGRAPHY");
+						if (strtolower($_SESSION['library']) == "cghs") { 
+							$_SESSION['sorts'] = array("TITLE"=>"Title","AUTHOR"=>"Author","CATDESC"=>"Date Cataloged (New to Old)","CATASC"=>"Date Cataloged (Old to New)","PUBYEAR"=>"Publication Year (Beta)");
+						} else {
+							$_SESSION['sorts'] = array("TITLE"=>"Title","AUTHOR"=>"Author","CATDESC"=>"Date Cataloged (New to Old)","CATASC"=>"Date Cataloged (Old to New)");
+						}
+					} else {
+						$auth=0;
+					}
+				}
+		
+				if ($auth == 0 || $_SESSION['wsurl'] <= "" || strpos($_SESSION['library'],".") || strpos($_SESSION['instance'],".") || strpos($_SESSION['itc'],".")) {
+					return 0;
+				}
+			}
+			
+			// SET SEARCH / VIEW DEFAULTS
+		
+			if ($_SESSION['library'] <= "" || $_SESSION['instance'] <= "") {
+				// Display that Fetch has been disabled for this library.  Contact provider
+				return 0;
+			} else {
+				$currentstatus="ok";
+				$views = array("rp","search","visualsearch","readinglevel","login","details","viewitem");
+				if (isset($_SESSION['oldview'])) {
+					if (!in_array($_SESSION['oldview'],$views)) {
+						$_SESSION['oldview'] = "search";
+					}
+				}
+				if ($_SESSION['view'] == "rp" && !isset($_POST['action'])) {
+					$postaction="newrpsearch";
+					$postview="rp";
+				}
+				if (isset($_POST['action']) || $postaction > "") {
+					if ($_POST['action'] == "newsearch") {
+						$_SESSION['q']="";
+						$_SESSION['page']=1;
+						$_SESSION['sort']="";
+						$_SESSION['scope']="";
+						$_SESSION['searchfieldselect']="";
+						$_SESSION['itemtype']="";
+						$_SESSION['searchfieldselect']="";
+						$_SESSION['hits']=0;
+						$_SESSION['bucketlist']=0;
+						$_SESSION['searchresults']="";
+						if (isset($_SESSION['view'])) {
+							if ($_SESSION['view'] > "") {
+								$_SESSION['oldview'] = $_SESSION['view'];
+							}
+						}
+						$_SESSION['view']="search";
+						$_SESSION['vs']="";
+						echo "<input type='hidden' id='startnewsearch' value='Y'>";
+					} elseif ($_POST['action'] == "newvisualsearch") {
+						if ($_SESSION['view'] > "") {
+							$_SESSION['oldview'] = $_SESSION['view'];
+						}
+						$_SESSION['q']="";
+						$_SESSION['page']=1;
+						$_SESSION['hits']=0;
+						$_SESSION['bucketlist']=0;
+						$_SESSION['searchresults']="";
+						$_SESSION['itemtype']="";
+						$_SESSION['searchfieldselect']="";
+						$_SESSION['scope']="";
+						$_SESSION['vs']="Y";
+						$_SESSION['view'] = "visualsearch";
+						echo "<input type='hidden' id='startnewsearch' value='Y'>";
+					} elseif ($_POST['action'] == "newrpsearch" || $postaction == "newrpsearch") {
+						$_SESSION['q']="";
+						$_SESSION['scope']="";
+						$_SESSION['itemtype']="";
+						$_SESSION['searchfieldselect']="";
+						$_SESSION['page']=1;
+						$_SESSION['hits']=0;
+						$_SESSION['bucketlist']=0;
+						$_SESSION['searchresults']="";
+						if ($_SESSION['view'] > "") {
+							$_SESSION['oldview'] = $_SESSION['view'];
+						}
+						$_SESSION['view']="rp";
+						$_SESSION['vs']="";
+						echo "<input type='hidden' id='startnewsearch' value='Y'>";
+					} elseif ($_POST['action'] == "closedetails") {
+						$_SESSION['view'] = $_SESSION['oldview'];
+					}
+				}
+				if (isset($_POST['view'])) {
+					if ($_POST['view']) {
+						if (in_array($_POST['view'],$views)) {
+							$_SESSION['init']="Y";
+							$_SESSION['view'] = $_POST['view'];
+						}
+					} elseif (!in_array($_SESSION['view'],$views)) {
+						$_SESSION['view']="search";
+						$_SESSION['init']="N";
+					}
+				}
+			}
+			return 1;
+		}
+	}
+	function debug($status) {
+		if (isset($_COOKIE['fetchdebug'])) {
+		if ($_COOKIE['fetchdebug'] == "Y" || $_SERVER['REMOTE_ADDR'] == "65.186.197.77") {
+			echo "<div style='cursor:pointer;text-align:center;padding:30px;color: rgba(255,255,255,.2);' id='debugboxbutton'><a style='text-shadow:1px 1px 3px #000;border: 1px solid rgba(255,255,255,.2);padding:10px;'>SHOW/HIDE DEBUG</a></div>";
+			echo "<div id='debugbox'>";
+				echo "<pre>";
+					echo "Status: ".$status."<br>";
+					print_r($_SESSION);
+					print_r($_GET);
+					print_r($_POST);
+					print_r($_COOKIE);
+				echo "</pre>";
+			echo "</div>";
+		}
+		}
+	}
+	
+	function sitealert($sitealert) {
+		if ($sitealert > 0) {
+			echo "<div style='width: 100%; padding: 20px; background-color :#cc0000; color: #FFF; text-align:center;'>";
+			echo "This site will be unavailable between 1pm - 3pm on Monday, March 5, 2021.";
+			echo "</div>";
+		}
+	}
+	
+	function logout($url) {
+		session_destroy();
+		unset($_SESSION);
+		header("location: ".$url);
+	}
+        function fixquery($qq) {
+                $x = explode(" ",$qq);
+                include("/var/www/html/badwords.php");
+                $newphrase="";
+                foreach ($x as $xx) {
+                        if (!in_array($xx,$badwords)) {
+                                $newphrase.=$xx." ";
+                        }
+                }
+
+                $newphrase=trim($newphrase);
+                return $newphrase;
+        }
+
+?>

@@ -1,0 +1,2499 @@
+{   
+	"home": 
+		{
+
+			"a_to_z":
+					{
+					"display": true,
+					"name":"A to Z",
+					"localIndex":"",
+					"query":"",
+					"image":"atoz",
+					"room":"a_to_z"
+					
+				},
+			"animals":
+					{
+					"display": true,
+					"name":"Animals",
+					"localIndex":"",
+					"query":"",
+					"image":"animals",
+					"room":"animals"
+					
+				},
+			"arts_and_crafts":
+					{
+					"display": true,
+					"name":"Arts & Crafts",
+					"localIndex":"",
+					"query":"",
+					"image":"crayons",
+					"room":"arts_and_crafts"
+					
+				},
+            "cooking":
+					{
+					"display": true,
+					"name":"Cooking",
+					"localIndex":"",
+					"query":"cooking",
+					"image":"cooking_salad",
+					"room":""
+					
+				},
+			"fun_stuff":
+					{
+					"display": true,
+					"name":"Fun Stuff",
+					"localIndex":"",
+					"query":"",
+					"image":"fun_confetti",
+					"room":"fun_stuff"
+					
+				},
+			"holidays":
+					{
+					"display": true,
+					"name":"Holidays",
+					"localIndex":"",
+					"query":"",
+					"image":"firework",
+					"room":"holidays"
+					
+				},
+			"plays":
+					{
+					"display": true,
+					"name":"Plays",
+					"localIndex":"",
+					"query":"children plays",
+					"image":"theatre",
+					"room":""
+					
+				},
+			"poems":
+					{
+					"display": true,
+					"name":"Poems",
+					"localIndex":"",
+					"query":"children poetry",
+					"image":"poems",
+					"room":""
+					
+				},
+			"science":
+					{
+					"display": true,
+					"name":"Science",
+					"localIndex":"",
+					"query":"",
+					"image":"saturn",
+					"room":"science"
+					
+				},
+			"social_studies":
+					{
+					"display": true,
+					"name":"Social Studies",
+					"localIndex":"",
+					"query":"",
+					"image":"ss",
+					"room":"social_studies"
+					
+				},	
+			"spooky_things":
+					{
+					"display": true,
+					"name":"Spooky Things",
+					"localIndex":"",
+					"query":"",
+					"image":"spooky",
+					"room":"spooky_things"
+					
+				},
+			"sports":
+					{
+					"display": true,
+					"name":"Sports",
+					"localIndex":"",
+					"query":"",
+					"image":"sports",
+					"room":"sports"
+					
+				},
+			"stories":
+					{
+					"display": true,
+					"name":"Stories",
+					"localIndex":"",
+					"query":"",
+					"image":"stories",
+					"room":"stories"
+					
+				}
+		},
+	"a_to_z":
+		{
+
+			"a":
+					{
+					"display": true,
+					"name":"'A' Words",
+					"localIndex":"#808080",
+					"query":"",
+					"image":"a",
+					"room":"a"
+					
+				},
+			"b":
+					{
+					"display": true,
+					"name":"'B' Words",
+					"localIndex":"#B0C4DE",
+					"query":"",
+					"image":"b",
+					"room":"b"
+					
+				},
+			"c":
+					{
+					"display": true,
+					"name":"'C' Words",
+					"localIndex":"#708090",
+					"query":"",
+					"image":"c",
+					"room":"c"
+					
+				},
+			"d":
+					{
+					"display": true,
+					"name":"'D' Words",
+					"localIndex":"#D2B48C",
+					"query":"",
+					"image":"d",
+					"room":"d"
+					
+				},
+			"e":
+					{
+					"display": true,
+					"name":"'E' Words",
+					"localIndex":"#D2691E",
+					"query":"",
+					"image":"e",
+					"room":"e"
+					
+				},
+			"f":
+					{
+					"display": true,
+					"name":"'F' Words",
+					"localIndex":"#FF69B4",
+					"query":"",
+					"image":"f",
+					"room":"f"
+					
+				},
+			"g":
+					{
+					"display": true,
+					"name":"'G' Words",
+					"localIndex":"#FF00FF",
+					"query":"",
+					"image":"g",
+					"room":"g"
+					
+				},
+			"h":
+					{
+					"display": true,
+					"name":"'H' Words",
+					"localIndex":"#BA55D3",
+					"query":"",
+					"image":"h",
+					"room":"h"
+					
+				},
+			"i":
+					{
+					"display": true,
+					"name":"'I' Words",
+					"localIndex":"#6A5ACD",
+					"query":"",
+					"image":"i",
+					"room":"i"
+					
+				},
+			"j":
+					{
+					"display": true,
+					"name":"'J' Words",
+					"localIndex":"#0000FF",
+					"query":"",
+					"image":"j",
+					"room":"j"
+					
+				},
+			"k":
+					{
+					"display": true,
+					"name":"'K' Words",
+					"localIndex":"#87CEFA",
+					"query":"",
+					"image":"k",
+					"room":"k"
+					
+				},
+			"l":
+					{
+					"display": true,
+					"name":"'L' Words",
+					"localIndex":"#6495ED",
+					"query":"",
+					"image":"l",
+					"room":"l"
+					
+				},
+			"m":
+					{
+					"display": true,
+					"name":"'M' Words",
+					"localIndex":"#7FFFD4",
+					"query":"",
+					"image":"m",
+					"room":"m"
+					
+				},
+			"n":
+					{
+					"display": true,
+					"name":"'N' Words",
+					"localIndex":"#00CED1",
+					"query":"",
+					"image":"n",
+					"room":"n"
+					
+				},
+			"o":
+					{
+					"display": true,
+					"name":"'O' Words",
+					"localIndex":"#008080",
+					"query":"",
+					"image":"o",
+					"room":"o"
+					
+				},
+			"p":
+					{
+					"display": true,
+					"name":"'P' Words",
+					"localIndex":"#66CDAA",
+					"query":"",
+					"image":"p",
+					"room":"p"
+					
+				},
+			"q":
+					{
+					"display": true,
+					"name":"'Q' Words",
+					"localIndex":"#8FBC8F",
+					"query":"",
+					"image":"q",
+					"room":"q"
+					
+				},
+			"r":
+					{
+					"display": true,
+					"name":"'R' Words",
+					"localIndex":"#00FF00",
+					"query":"",
+					"image":"r",
+					"room":"r"
+					
+				},
+			"s":
+					{
+					"display": true,
+					"name":"'S' Words",
+					"localIndex":"#ADFF2F",
+					"query":"",
+					"image":"s",
+					"room":"s"
+					
+				},
+			"t":
+					{
+					"display": true,
+					"name":"'T' Words",
+					"localIndex":"#9ACD32",
+					"query":"",
+					"image":"t",
+					"room":"t"
+					
+				},
+			"u":
+					{
+					"display": true,
+					"name":"'U' Words",
+					"localIndex":"#BDB76B",
+					"query":"",
+					"image":"u",
+					"room":"u"
+					
+				},
+			"v":
+					{
+					"display": true,
+					"name":"'V' Words",
+					"localIndex":"#FFD700",
+					"query":"",
+					"image":"v",
+					"room":"v"
+					
+				},
+			"w":
+					{
+					"display": true,
+					"name":"'W' Words",
+					"localIndex":"#FFA07A",
+					"query":"",
+					"image":"w",
+					"room":"w"
+					
+				},
+			"x":
+					{
+					"display": true,
+					"name":"'X' Words",
+					"localIndex":"#FF7F50",
+					"query":"",
+					"image":"x",
+					"room":"x"
+					
+				},
+			"y":
+					{
+					"display": true,
+					"name":"'Y' Words",
+					"localIndex":"#B22222",
+					"query":"",
+					"image":"y",
+					"room":"y"
+					
+				},
+			"z":
+					{
+					"display": true,
+					"name":"'Z' Words",
+					"localIndex":"#800000",
+					"query":"",
+					"image":"z",
+					"room":"z"
+					
+				}
+						
+				
+		},
+		
+    "animals":
+        {
+
+			"apes":
+					{
+					"display": true,
+					"name":"Apes",
+					"localIndex":"",
+					"query":"APES OR GORILLAS OR CHIMPANZEES OR GIBBONS",
+					"bool":"or",
+					"image":"apes",
+					"room":""
+				},
+			"aquariums":
+					{
+					"display": true,
+					"name":"Aquariums",
+					"localIndex":"",
+					"query":"aquariums",
+					"image":"aquariums",
+					"room":""
+					
+				},
+			"bears":
+					{
+					"display": true,
+					"name":"Bears",
+					"localIndex":"",
+					"query":"bears",
+					"image":"bears"
+				},
+			"bees":
+					{
+					"display": true,
+					"name":"Bees",
+					"localIndex":"",
+					"query":"bees",
+					"image":"bees",
+					"room":""
+					
+				},
+			"birds":
+					{
+					"display": true,
+					"name":"Birds",
+					"localIndex":"",
+					"query":"birds",
+					"image":"birds",
+					"room":""
+					
+				},
+			"buffalo":
+					{
+					"display": true,
+					"name":"Buffalo",
+					"localIndex":"",
+					"query":"BISON OR BUFFOLO$",
+					"image":"buffalo",
+					"room":""
+					
+				},
+			"cats":
+					{
+					"display": true,
+					"name":"Cats",
+					"localIndex":"",
+					"query":"CATS OR (CATS AND BREEDS)",
+					"image":"cats",
+					"room":""
+					
+				},
+			"chickens":
+					{
+					"display": true,
+					"name":"Chickens",
+					"localIndex":"",
+					"query":"chickens or poultry",
+					"image":"chickens",
+					"room":""
+					
+				},
+			"cows":
+					{
+					"display": true,
+					"name":"Cows",
+					"localIndex":"",
+					"query":"COWS OR CATTLE OR (BULLS NOT CHICAGO)",
+					"image":"cows",
+					"room":""
+					
+				},
+			"deer":
+					{
+					"display":true,
+					"name":"Deer",
+					"localIndex":"",
+					"query":"deer",
+					"image":"deer",
+					"room":""
+					
+				},
+			"dinosaurs":
+					{
+					"display":true,
+					"name":"Dinosaurs",
+					"localIndex":"",
+					"query":"DINOSAURS OR PALEONTOLOG$",
+					"image":"dinosaurs",
+					"room":""
+					
+				},
+			"dogs":
+					{
+					"display":true,
+					"name":"Dogs",
+					"localIndex":"",
+					"query":"DOGS OR (DOG ADJ BREEDS)",
+					"image":"dogs",
+					"room":""
+					
+				},
+			"dolphins":
+					{
+					"display":true,
+					"name":"Dolphins",
+					"localIndex":"",
+					"query":"DOLPHINS OR PORPOISES",
+					"image":"dolphins",
+					"room":""
+					
+				},
+			"ducks":
+					{
+					"display":true,
+					"name":"Ducks",
+					"localIndex":"",
+					"query":"DUCKS OR GEESE OR SWANS OR WATERFOWL",
+					"image":"ducks",
+					"room":""
+					
+				},
+			"eagles":
+					{
+					"display":true,
+					"name":"Eagles",
+					"localIndex":"",
+					"query":"eagles",
+					"image":"eagles",
+					"room":""
+					
+				},
+			"elephants":
+					{
+					"display":true,
+					"name":"Elephants",
+					"localIndex":"",
+					"query":"elephants",
+					"image":"elephants",
+					"room":""
+					
+				},
+			"endangered_species":
+					{
+					"display":true,
+					"name":"Endangered Species",
+					"localIndex":"",
+					"query":"(ENDANGERED AND (SPECIES OR ANIMALS OR CREATURES)) OR (RARE AND (ANIMALS OR SPECIES OR CREATURES))",
+					"image":"endangered",
+					"room":""
+					
+				},
+			"fish":
+					{
+					"display":true,
+					"name":"Fish",
+					"localIndex":"",
+					"query":"fish or fishes",
+					"image":"fish",
+					"room":""
+					
+				},
+			"frogs":
+					{
+					"display":true,
+					"name":"Frogs",
+					"localIndex":"",
+					"query":"frogs or amphibians",
+					"image":"frogs",
+					"room":""
+					
+				},
+			"giraffes":
+					{
+					"display":true,
+					"name":"Giraffes",
+					"localIndex":"",
+					"query":"giraffes",
+					"image":"giraffes",
+					"room":""
+					
+				},
+			"goats":
+					{
+					"display":true,
+					"name":"Goats",
+					"localIndex":"",
+					"query":"goats",
+					"image":"goats",
+					"room":""
+					
+				},
+			"hamsters":
+					{
+					"display":true,
+					"name":"Hamsters",
+					"localIndex":"",
+					"query":"hamsters or gerbils or (guinea adj pigs)",
+					"image":"hamsters",
+					"room":""
+					
+				},
+			"hippopotami":
+					{
+					"display":true,
+					"name":"Hippopotami",
+					"localIndex":"",
+					"query":"hippopotamus or hippo or hippos",
+					"image":"hippopotamus",
+					"room":""
+					
+				},
+			"horses":
+					{
+					"display":true,
+					"name":"Horses",
+					"localIndex":"",
+					"query":"horses or ponies or pony or horse",
+					"image":"horses",
+					"room":""
+					
+				},
+			"insects":
+					{
+					"display":true,
+					"name":"Insects",
+					"localIndex":"",
+					"query":"insects or spiders or entomology",
+					"image":"insects",
+					"room":""
+					
+				},
+			"kangaroos":
+					{
+					"display":true,
+					"name":"Kangaroos",
+					"localIndex":"",
+					"query":"kangaroos",
+					"image":"kangaroos",
+					"room":""
+					
+				},
+			"koalas":
+					{
+					"display":true,
+					"name":"Koalas",
+					"localIndex":"",
+					"query":"koala$",
+					"image":"koalas",
+					"room":""
+					
+				},
+			"lions":
+					{
+					"display":true,
+					"name":"Lions",
+					"localIndex":"",
+					"query":"lions or tigers not (sea or detroit)",
+					"image":"lions",
+					"room":""
+					
+				},
+			"mice":
+					{
+					"display":true,
+					"name":"Mice",
+					"localIndex":"",
+					"query":"mice or mouse or rats or rodents",
+					"image":"mouse",
+					"room":""
+					
+				},
+			"monkeys":
+					{
+					"display":true,
+					"name":"Monkeys",
+					"localIndex":"",
+					"query":"monkeys",
+					"image":"monkeys",
+					"room":""
+					
+				},
+			"ostriches":
+					{
+					"display":true,
+					"name":"Ostriches",
+					"localIndex":"",
+					"query":"ostriches or ostrich or emu or emus",
+					"image":"ostriches",
+					"room":""
+					
+				},
+			"owls":
+					{
+					"display":true,
+					"name":"Owls",
+					"localIndex":"",
+					"query":"owls",
+					"image":"owls",
+					"room":""
+					
+				},
+			"pandas":
+					{
+					"display":true,
+					"name":"Pandas",
+					"localIndex":"",
+					"query":"panda$",
+					"image":"pandas",
+					"room":""
+					
+				},
+			"pet_care":
+					{
+					"display":true,
+					"name":"Pet Care",
+					"localIndex":"",
+					"query":"pets",
+					"image":"petcare",
+					"room":""
+					
+				},
+			"pet_stories":
+					{
+					"display":true,
+					"name":"Pet Stories",
+					"localIndex":"",
+					"query":"(animals or pets) and (stories or anecdotes)",
+					"image":"stories",
+					"room":""
+					
+				},
+			"pigs":
+					{
+					"display":true,
+					"name":"Pigs",
+					"localIndex":"",
+					"query":"pigs or swine",
+					"image":"pigs",
+					"room":""
+					
+				},
+			"rabbits":
+					{
+					"display":true,
+					"name":"Rabbits",
+					"localIndex":"",
+					"query":"rabbits",
+					"image":"rabbits",
+					"room":""
+					
+				},
+			"raccoons":
+					{
+					"display":true,
+					"name":"Raccoons",
+					"localIndex":"",
+					"query":"raccoon$",
+					"image":"raccoons",
+					"room":""
+					
+				},
+			"reptiles":
+					{
+					"display":true,
+					"name":"Reptiles",
+					"localIndex":"",
+					"query":"reptiles",
+					"image":"reptiles",
+					"room":""
+					
+				},
+			"seals":
+					{
+					"display":true,
+					"name":"Seals",
+					"localIndex":"",
+					"query":"seals and (animal$ or sea or ocean)",
+					"image":"seals",
+					"room":""
+					
+				},
+			"sheep":
+					{
+					"display":true,
+					"name":"Sheep",
+					"localIndex":"",
+					"query":"sheep or lambs",
+					"image":"sheep",
+					"room":""
+					
+				},
+			"snakes":
+					{
+					"display":true,
+					"name":"Snakes",
+					"localIndex":"",
+					"query":"snakes",
+					"image":"snakes",
+					"room":""
+					
+				},
+			"training_pets":
+					{
+					"display":true,
+					"name":"Training Pets",
+					"localIndex":"",
+					"query":"training and (pets or animals or dogs or cats or horses)",
+					"image":"medal",
+					"room":""
+					
+				},
+			"turtles":
+					{
+					"display":true,
+					"name":"Turtles",
+					"localIndex":"",
+					"query":"turtles",
+					"image":"turtles",
+					"room":""
+					
+				},
+			"veterinary_medicine":
+					{
+					"display":true,
+					"name":"Veterinary Medicine",
+					"localIndex":"",
+					"query":"(VETERINARY OR DISEASES) AND (MEDICINE OR ANIMALS) AND (PETS OR DOGS OR CATS OR HORSES)",
+					"bool":"or",
+					"image":"veterinarian",
+					"room":""
+				
+				},
+			"whales":
+					{
+					"display":true,
+					"name":"Whales",
+					"localIndex":"",
+					"query":"whales or cetacea",
+					"image":"whale",
+					"room":""
+					
+				},
+			"zoos":
+					{
+					"display":true,
+					"name":"Zoos",
+					"localIndex":"",
+					"query":"zoos",
+					"image":"zoos",
+					"room":""
+					
+				}
+				
+		},
+		"arts_and_crafts": 
+		{
+
+			"artists":
+					{
+					"display":true,
+					"name":"Artists",
+					"localIndex":"",
+					"query":"artists or crafts or painters",
+					"bool":"and",
+					"image":"artists",
+					"room":""
+					
+				},
+			"calligraphy":
+					{
+					"display":true,
+					"name":"Calligraphy",
+					"localIndex":"",
+					"query":"(art or arts or crafts) and calligraphy",
+					"bool":"and",
+					"image":"colligraphy",
+					"room":""
+					
+				},
+			"color":
+					{
+					"display":true,
+					"name":"Color",
+					"localIndex":"",
+					"query":"(art or arts or crafts) and (color or colors)",
+					"bool":"and",
+					"image":"colors",
+					"room":""
+					
+				},
+			"costumes":
+					{
+					"display":true,
+					"name":"Costumes",
+					"localIndex":"",
+					"query":"costume and (children or design)",
+					"image":"costumes",
+					"room":""
+					
+				},
+			"drawing":
+					{
+					"display":true,
+					"name":"Drawing",
+					"localIndex":"",
+					"query":"drawing or sketching",
+					"image":"drawing",
+					"room":""
+					
+				},
+			"holiday_crafts":
+					{
+					"display":true,
+					"name":"Holiday Crafts",
+					"localIndex":"",
+					"query":"holiday crafts",
+					"bool":"and",
+					"image":"holidaycrafts",
+					"room":""
+					
+				},
+			"jewelry":
+					{
+					"display":true,
+					"name":"Jewelry",
+					"localIndex":"",
+					"query":"crafts jewelry",
+					"bool":"and",
+					"image":"jewelry",
+					"room":""
+					
+				},
+			"knitting":
+					{
+					"display":true,
+					"name":"Knitting",
+					"localIndex":"",
+					"query":"knitting",
+					"image":"knitting",
+					"room":""
+					
+				},
+			"models":
+					{
+					"display":true,
+					"name":"Models",
+					"localIndex":"",
+					"query":"arts models",
+					"bool":"and",
+					"image":"models",
+					"room":""
+					
+				},
+			"origami":
+					{
+					"display":true,
+					"name":"Origami",
+					"localIndex":"",
+					"query":"origami",
+					"image":"origami",
+					"room":""
+					
+				},
+			"painting":
+					{
+					"display":true,
+					"name":"Painting",
+					"localIndex":"",
+					"query":"painting",
+					"image":"painting",
+					"room":""
+					
+				},
+			"photography":
+					{
+					"display":true,
+					"name":"Photography",
+					"localIndex":"",
+					"query":"photography",
+					"image":"photography",
+					"room":""
+					
+				},
+			"pottery":
+					{
+					"display":true,
+					"name":"Pottery",
+					"localIndex":"",
+					"query":"pottery",
+					"image":"pottery",
+					"room":""
+					
+				},
+			"quilting":
+					{
+					"display":true,
+					"name":"Quilting",
+					"localIndex":"",
+					"query":"quilting",
+					"image":"quilting",
+					"room":""
+					
+				},
+			"sculpture":
+					{
+					"display":true,
+					"name":"Sculpture",
+					"localIndex":"",
+					"query":"sculpture",
+					"image":"sculpture",
+					"room":""
+					
+				},
+			"sewing":
+					{
+					"display":true,
+					"name":"Sewing",
+					"localIndex":"",
+					"query":"sewing",
+					"image":"sewing",
+					"room":""
+					
+				},
+			"weaving":
+					{
+					"display":true,
+					"name":"Weaving",
+					"localIndex":"",
+					"query":"weaving",
+					"image":"weaving",
+					"room":""
+					
+				},
+			"woodworking":
+					{
+					"display":true,
+					"name":"Woodworking",
+					"localIndex":"",
+					"query":"woodwork",
+					"image":"hammer",
+					"room":""
+					
+				}
+				
+		},
+		
+		"fun_stuff": 
+		{
+
+			"board_games":
+					{
+					"display":true,
+					"name":"Board Games",
+					"localIndex":"",
+					"query":"&quot;board games&quot;",
+					"image":"boardgames",
+					"room":""
+					
+				},
+			"card_games":
+					{
+					"display":true,
+					"name":"Card Games",
+					"localIndex":"",
+					"query":"&quot;card games&quot;",
+					"image":"cardgames",
+					"room":""
+					
+				},
+			"collecting":
+					{
+					"display":true,
+					"name":"Collecting",
+					"localIndex":"",
+					"query":"collecting",
+					"image":"collecting",
+					"room":""
+					
+				},
+			"comic_books":
+					{
+					"display":true,
+					"name":"Comic Books",
+					"localIndex":"",
+					"query":"&quot;comic books&quot;",
+					"image":"comicbooks",
+					"room":""
+					
+				},
+			"curiosities":
+					{
+					"display":true,
+					"name":"Curiosities",
+					"localIndex":"",
+					"query":"curiosities",
+					"image":"curiosities",
+					"room":""
+					
+				},
+			"games":
+					{
+					"display":true,
+					"name":"Games",
+					"localIndex":"",
+					"query":"games",
+					"image":"games",
+					"room":""
+					
+				},
+			"jokes":
+					{
+					"display":true,
+					"name":"Jokes",
+					"localIndex":"",
+					"query":"jokes",
+					"image":"jokes",
+					"room":""
+					
+				},
+			"juggling":
+					{
+					"display":true,
+					"name":"Juggling",
+					"localIndex":"",
+					"query":"juggling",
+					"image":"juggling",
+					"room":""
+					
+				},
+			"magic_tricks":
+					{
+					"display":true,
+					"name":"Magic Tricks",
+					"localIndex":"",
+					"query":"&quot;magic tricks&quot;",
+					"image":"magictricks",
+					"room":""
+					
+				},
+			"math_games":
+					{
+					"display":true,
+					"name":"Math Games",
+					"localIndex":"",
+					"query":"math games",
+					"image":"mathgames",
+					"room":""
+					
+				},
+			"parties":
+					{
+					"display":true,
+					"name":"Parties",
+					"localIndex":"",
+					"query":"children's parties",
+					"image":"parties",
+					"room":""
+					
+				},
+			"puzzles":
+					{
+					"display":true,
+					"name":"Puzzles",
+					"localIndex":"",
+					"query":"puzzles",
+					"image":"puzzles",
+					"room":""
+					
+				},
+			"science_fun":
+					{
+					"display":true,
+					"name":"Science Fun",
+					"localIndex":"",
+					"query":"science fun",
+					"image":"sciencefun",
+					"room":""
+					
+				},
+			"video_games":
+					{
+					"display":true,
+					"name":"Video Games",
+					"localIndex":"",
+					"query":"&quot;video games&quot;",
+					"image":"videogames",
+					"room":""
+					
+				}
+				
+				
+		},
+		"holidays": 
+		{
+
+			"arbor_day":
+					{
+					"display":true,
+					"name":"Arbor Day",
+					"localIndex":"",
+					"query":"&quot;arbor day&quot;",
+					"image":"arbor",
+					"room":""
+					
+				},
+			"canada_day":
+					{
+					"display":true,
+					"name":"Canada Day",
+					"localIndex":"",
+					"query":"&quot;canada day&quot;",
+					"image":"canada",
+					"room":""
+					
+				},
+			"chinese_new_year":
+					{
+					"display":true,
+					"name":"Chinese New Year",
+					"localIndex":"",
+					"query":"&quot;chinese new year&quot;",
+					"image":"chinesenewyear",
+					"room":""
+					
+				},
+			"christmas":
+					{
+					"display":true,
+					"name":"Christmas",
+					"localIndex":"",
+					"query":"christmas",
+					"image":"christmas",
+					"room":""
+					
+				},
+			"dia_de_los_muertos":
+					{
+					"display":true,
+					"name":"Día de los Muertos",
+					"localIndex":"",
+					"query":"&quot;all souls day&quot;",
+					"image":"dayofdead",
+					"room":""
+					
+				},
+			"diwali":
+					{
+					"display":true,
+					"name":"Diwali",
+					"localIndex":"",
+					"query":"diwali",
+					"image":"diwali",
+					"room":""
+					
+				},
+			"earth_day":
+					{
+					"display":true,
+					"name":"Earth Day",
+					"localIndex":"",
+					"query":"&quot;earth day&quot;",
+					"image":"earth2",
+					"room":""
+					
+				},
+			"easter":
+					{
+					"display":true,
+					"name":"Easter",
+					"localIndex":"",
+					"query":"easter",
+					"image":"easter",
+					"room":""
+					
+				},
+			"fathers_day":
+					{
+					"display":true,
+					"name":"Father's Day",
+					"localIndex":"",
+					"query":"&quot;father day&quot;",
+					"image":"fathers",
+					"room":""
+					
+				},
+			"fourth_of_july":
+					{
+					"display":true,
+					"name":"Fourth of July",
+					"localIndex":"",
+					"query":"&quot;fourth july&quot;",
+					"image":"fourth",
+					"room":""
+					
+				},
+			"halloween":
+					{
+					"display":true,
+					"name":"Halloween",
+					"localIndex":"",
+					"query":"halloween",
+					"image":"halloween",
+					"room":""
+					
+				},
+			"hanukkah":
+					{
+					"display":true,
+					"name":"Hanukkah",
+					"localIndex":"",
+					"query":"hanukkah",
+					"image":"hanukkah",
+					"room":""
+					
+				},
+			"kwanzaa":
+					{
+					"display":true,
+					"name":"Kwanzaa",
+					"localIndex":"",
+					"query":"kwanzaa",
+					"image":"kwanzaa",
+					"room":""
+					
+				},
+			"mardi_gras":
+					{
+					"display":true,
+					"name":"Mardi Gras",
+					"localIndex":"",
+					"query":"&quot;mardi gras&quot;",
+					"image":"mardigras",
+					"room":""
+					
+				},
+			"mothers_day":
+					{
+					"display":true,
+					"name":"Mother's Day",
+					"localIndex":"",
+					"query":"&quot;mother's day&quot;",
+					"image":"mothers",
+					"room":""
+					
+				},
+			"new_years_day":
+					{
+					"display":true,
+					"name":"New Year's Day",
+					"localIndex":"",
+					"query":"&quot;new year&quot;",
+					"image":"newyear",
+					"room":""
+					
+				},
+			"ramadan":
+					{
+					"display":true,
+					"name":"Ramadan",
+					"localIndex":"",
+					"query":"ramadan",
+					"image":"ramadan",
+					"room":""
+					
+				},
+			"saint_patricks_day":
+					{
+					"display":true,
+					"name":"Saint Patrick's Day",
+					"localIndex":"",
+					"query":"saint patrick day or saint patrick's day or saint patty day or saint patty's day or st patrick day or st patrick's day or st. patrick day or st. patrick's day",
+					"image":"stpatricks",
+					"room":""
+					
+				},
+			"thanksgiving_day":
+					{
+					"display":true,
+					"name":"Thanksgiving Day",
+					"localIndex":"",
+					"query":"&quot;thanksgiving day&quot;",
+					"image":"thanksgiving",
+					"room":""
+					
+				},
+			"valentines_day":
+					{
+					"display":true,
+					"name":"Valentine's Day",
+					"localIndex":"",
+					"query":"valentine day",
+					"image":"valentines",
+					"room":""
+					
+				}
+			
+			
+		},
+		"science": 
+		{
+
+			"autumn":
+					{
+					"display":true,
+					"name":"Autumn",
+					"localIndex":"",
+					"query":"science autumn",
+					"image":"autumn",
+					"room":""
+					
+				},
+				
+		
+			"chemistry":
+					{
+					"display":true,
+					"name":"Chemistry",
+					"localIndex":"",
+					"query":"science chemistry",
+					"image":"chemistry",
+					"room":""
+					
+				},
+			"day":
+					{
+					"display":true,
+					"name":"Day",
+					"localIndex":"",
+					"query":"&quot;science day&quot;",
+					"image":"day",
+					"room":""
+					
+				},
+			"earth":
+					{
+					"display":true,
+					"name":"Earth",
+					"localIndex":"",
+					"query":"&quot;science earth&quot;",
+					"image":"earthday",
+					"room":""
+					
+				},
+			"earthquakes":
+					{
+					"display":true,
+					"name":"Earthquakes",
+					"localIndex":"",
+					"query":"earthquakes",
+					"image":"earthquakes",
+					"room":""
+					
+				},
+			"electricity":
+					{
+					"display":true,
+					"name":"Electricity",
+					"localIndex":"",
+					"query":"electricity",
+					"image":"electricity",
+					"room":""
+					
+				},
+			"fossils":
+					{
+					"display":true,
+					"name":"Fossils",
+					"localIndex":"",
+					"query":"fossils",
+					"image":"fossils",
+					"room":""
+					
+				},
+			"geology":
+					{
+					"display":true,
+					"name":"Geology",
+					"localIndex":"",
+					"query":"geology",
+					"image":"geology",
+					"room":""
+					
+				},
+			"hearing":
+					{
+					"display":true,
+					"name":"Hearing",
+					"localIndex":"",
+					"query":"&quot;science hearing&quot;",
+					"image":"hearing",
+					"room":""
+					
+				},
+			"heat":
+					{
+					"display":true,
+					"name":"Heat",
+					"localIndex":"",
+					"query":"science heat",
+					"image":"heat",
+					"room":""
+					
+				},
+			"human_body":
+					{
+					"display":true,
+					"name":"Human Body",
+					"localIndex":"",
+					"query":"science &quot;human body&quot;",
+					"image":"body",
+					"room":""
+					
+				},
+			"inventions":
+					{
+					"display":true,
+					"name":"Inventions",
+					"localIndex":"",
+					"query":"inventions",
+					"image":"inventions",
+					"room":""
+					
+				},
+			"light_and_optics":
+					{
+					"display":true,
+					"name":"Light & Optics",
+					"localIndex":"",
+					"query":"science light",
+					"image":"optics",
+					"room":""
+					
+				},
+			"magnets":
+					{
+					"display":true,
+					"name":"Magnets",
+					"localIndex":"",
+					"query":"science magnet",
+					"image":"magnets",
+					"room":""
+					
+				},
+			"moon":
+					{
+					"display":true,
+					"name":"Moon",
+					"localIndex":"",
+					"query":"moon",
+					"image":"moon",
+					"room":""
+					
+				},
+			"night":
+					{
+					"display":true,
+					"name":"Night",
+					"localIndex":"",
+					"query":"science night",
+					"image":"night",
+					"room":""
+					
+				},
+			"outer_space":
+					{
+					"display":true,
+					"name":"Outer Space",
+					"localIndex":"",
+					"query":"&quot;outer space&quot;",
+					"image":"outerspace",
+					"room":""
+					
+				},
+			"planets":
+					{
+					"display":true,
+					"name":"Planets",
+					"localIndex":"",
+					"query":"planets",
+					"image":"planets",
+					"room":""
+					
+				},
+			"robots":
+					{
+					"display":true,
+					"name":"Robots",
+					"localIndex":"",
+					"query":"robots",
+					"image":"robots",
+					"room":""
+					
+				},
+			"science_projects":
+					{
+					"display":true,
+					"name":"Science Projects",
+					"localIndex":"",
+					"query":"&quot;science projects&quot;",
+					"image":"scienceprojects",
+					"room":""
+					
+				},
+			"scientists":
+					{
+					"display":true,
+					"name":"Scientists",
+					"localIndex":"",
+					"query":"scientists",
+					"image":"scientist",
+					"room":""
+					
+				},
+			"smell":
+					{
+					"display":true,
+					"name":"Smell",
+					"localIndex":"",
+					"query":"science smell",
+					"image":"smell",
+					"room":""
+					
+				},
+			"solar_system":
+					{
+					"display":true,
+					"name":"Solar System",
+					"localIndex":"",
+					"query":"&quot;solar system&quot;",
+					"image":"solarsystem",
+					"room":""
+					
+				},
+			"sound":
+					{
+					"display":true,
+					"name":"Sound",
+					"localIndex":"",
+					"query":"sound",
+					"image":"sound",
+					"room":""
+					
+				},
+			"spring":
+					{
+					"display":true,
+					"name":"Spring",
+					"localIndex":"",
+					"query":"spring",
+					"image":"spring",
+					"room":""
+					
+				},
+			"stars":
+					{
+					"display":true,
+					"name":"Stars",
+					"localIndex":"",
+					"query":"stars",
+					"image":"stars",
+					"room":""
+					
+				},
+			"storms":
+					{
+					"display":true,
+					"name":"Storms",
+					"localIndex":"",
+					"query":"storms",
+					"image":"storms",
+					"room":""
+					
+				},
+			"summer":
+					{
+					"display":true,
+					"name":"Summer",
+					"localIndex":"",
+					"query":"summer",
+					"image":"summer",
+					"room":""
+					
+				},
+			"sun":
+					{
+					"display":true,
+					"name":"Sun",
+					"localIndex":"",
+					"query":"sun",
+					"image":"sun",
+					"room":""
+					
+				},
+			"taste":
+					{
+					"display":true,
+					"name":"Taste",
+					"localIndex":"",
+					"query":"taste",
+					"image":"taste",
+					"room":""
+					
+				},
+			"telescopes":
+					{
+					"display":true,
+					"name":"Telescopes",
+					"localIndex":"",
+					"query":"telescopes",
+					"image":"telescopes",
+					"room":""
+					
+				},
+			"time":
+					{
+					"display":true,
+					"name":"Time",
+					"localIndex":"",
+					"query":"time",
+					"image":"time",
+					"room":""
+					
+				},
+			"touch":
+					{
+					"display":true,
+					"name":"Touch",
+					"localIndex":"",
+					"query":"touch",
+					"image":"touch",
+					"room":""
+					
+				},
+			"vision":
+					{
+					"display":true,
+					"name":"Vision",
+					"localIndex":"",
+					"query":"vision",
+					"image":"vision",
+					"room":""
+					
+				},
+			"volcanoes":
+					{
+					"display":true,
+					"name":"Volcanoes",
+					"localIndex":"",
+					"query":"volcanoes",
+					"image":"volcanoes",
+					"room":""
+					
+				},
+			"weather":
+					{
+					"display":true,
+					"name":"Weather",
+					"localIndex":"",
+					"query":"weather",
+					"image":"weather",
+					"room":""
+					
+				},
+			"winter":
+					{
+					"display":true,
+					"name":"Winter",
+					"localIndex":"",
+					"query":"winter",
+					"image":"winter",
+					"room":""
+					
+				},
+			"xrays":
+					{
+					"display":true,
+					"name":"X Rays",
+					"localIndex":"",
+					"query":"x rays",
+					"image":"xrays",
+					"room":""
+					
+				}
+		},
+		
+		"social_studies": 
+		{
+
+			"civil_rights":
+					{
+					"display":true,
+					"name":"Civil Rights",
+					"localIndex":"",
+					"query":"&quot;civil rights&quot;",
+					"image":"civilrights",
+					"room":""
+					
+				},
+			"community":
+					{
+					"display":true,
+					"name":"Community",
+					"localIndex":"",
+					"query":"community",
+					"image":"community",
+					"room":""
+					
+				},
+			"diversity_and_culture":
+					{
+					"display":true,
+					"name":"Diversity & Culture",
+					"localIndex":"",
+					"query":"culture",
+					"image":"diversity",
+					"room":""
+					
+				},
+			"explorers":
+					{
+					"display":true,
+					"name":"Explorers",
+					"localIndex":"",
+					"query":"explorers",
+					"image":"explorers",
+					"room":""
+					
+				},
+			"immigration":
+					{
+					"display":true,
+					"name":"Immigration",
+					"localIndex":"",
+					"query":"immigration",
+					"image":"immigration",
+					"room":""
+					
+				},
+			"korean_war":
+					{
+					"display":true,
+					"name":"Korean War",
+					"localIndex":"",
+					"query":"&quot;korean war&quot;",
+					"image":"koreanwar",
+					"room":""
+					
+				},
+			"maps":
+					{
+					"display":true,
+					"name":"Maps",
+					"localIndex":"",
+					"query":"maps",
+					"image":"maps",
+					"room":""
+					
+				},
+			"traditions_and_customs":
+					{
+					"display":true,
+					"name":"Traditions & Customs",
+					"localIndex":"",
+					"query":"customs",
+					"image":"traditions",
+					"room":""
+					
+				},
+			"vietnam_war":
+					{
+					"display":true,
+					"name":"Vietnam War",
+					"localIndex":"",
+					"query":"vietnamese conflict",
+					"image":"vietnamwar",
+					"room":""
+					
+				},
+			"world_war_one":
+					{
+					"display":true,
+					"name":"World War I",
+					"localIndex":"",
+					"query":"world war 1914-1918",
+					"image":"ww1",
+					"room":""
+					
+				},
+			"world_war_two":
+					{
+					"display":true,
+					"name":"World War II",
+					"localIndex":"",
+					"query":"world war 1939-1945",
+					"image":"ww2",
+					"room":""
+					
+				}
+				
+		},
+			
+		"spooky_things": 
+		{
+
+			"ghosts":
+					{
+					"display":true,
+					"name":"Ghosts",
+					"localIndex":"",
+					"query":"ghosts",
+					"image":"ghosts",
+					"room":""
+					
+				},
+			"haunted_houses":
+					{
+					"display":true,
+					"name":"Haunted Houses",
+					"localIndex":"",
+					"query":"&quot;haunted houses&quot;",
+					"image":"hauntedhouses",
+					"room":""
+					
+				},
+			"monsters":
+					{
+					"display":true,
+					"name":"Monsters",
+					"localIndex":"",
+					"query":"monsters",
+					"image":"monster",
+					"room":""
+					
+				},
+			"supernatural":
+					{
+					"display":true,
+					"name":"Supernatural",
+					"localIndex":"",
+					"query":"supernatural",
+					"image":"candle",
+					"room":""
+					
+				},
+			"superstitions":
+					{
+					"display":true,
+					"name":"Superstitions",
+					"localIndex":"",
+					"query":"superstition",
+					"image":"blackcat",
+					"room":""
+					
+				},
+			"ufos":
+					{
+					"display":true,
+					"name":"UFOs",
+					"localIndex":"",
+					"query":"&quot;unidentified flying objects&quot;",
+					"image":"ufos",
+					"room":""
+					
+				},
+			"vampires":
+					{
+					"display":true,
+					"name":"Vampires",
+					"localIndex":"",
+					"query":"vampires",
+					"image":"vampires",
+					"room":""
+					
+				},
+			"werewolves":
+					{
+					"display":true,
+					"name":"Werewolves",
+					"localIndex":"",
+					"query":"werewolves",
+					"image":"werewolves",
+					"room":""
+					
+				},
+			"witches":
+					{
+					"display":true,
+					"name":"Witches",
+					"localIndex":"",
+					"query":"witches",
+					"image":"witches",
+					"room":""
+					
+				},
+			"zombies":
+					{
+					"display":true,
+					"name":"Zombies",
+					"localIndex":"",
+					"query":"zombies",
+					"image":"zombies",
+					"room":""
+					
+				}
+				
+		},
+		"sports": 
+		{
+
+			"auto_racing":
+					{
+					"display":true,
+					"name":"Auto Racing",
+					"localIndex":"",
+					"query":"&quot;automobile racing&quot;",
+					"image":"racing",
+					"room":""
+					
+				},
+			"baseball":
+					{
+					"display":true,
+					"name":"Baseball",
+					"localIndex":"",
+					"query":"baseball",
+					"image":"baseball",
+					"room":""
+					
+				},
+			"basketball":
+					{
+					"display":true,
+					"name":"Basketball",
+					"localIndex":"",
+					"query":"basketball",
+					"image":"basketball",
+					"room":""
+					
+				},
+			"boxing":
+					{
+					"display":true,
+					"name":"Boxing",
+					"localIndex":"",
+					"query":"boxing",
+					"image":"boxing",
+					"room":""
+					
+				},
+			"cheerleading":
+					{
+					"display":true,
+					"name":"Cheerleading",
+					"localIndex":"",
+					"query":"cheerleading",
+					"image":"cheerleading",
+					"room":""
+					
+				},
+			"cricket":
+					{
+					"display":true,
+					"name":"Cricket",
+					"localIndex":"",
+					"query":"&quot;cricket&quot; &quot;game&quot;",
+					"image":"cricket",
+					"room":""
+					
+				},
+			"cycling":
+					{
+					"display":true,
+					"name":"Cycling",
+					"localIndex":"",
+					"query":"cycling",
+					"image":"cycling",
+					"room":""
+					
+				},
+			"dance":
+					{
+					"display":true,
+					"name":"Dance",
+					"localIndex":"",
+					"query":"dance",
+					"image":"dance",
+					"room":""
+					
+				},
+			"dog_sledding":
+					{
+					"display":true,
+					"name":"Dog Sledding",
+					"localIndex":"",
+					"query":"&quot;sled dog racing&quot;",
+					"image":"dogsledding",
+					"room":""
+					
+				},
+			"fishing":
+					{
+					"display":true,
+					"name":"Fishing",
+					"localIndex":"",
+					"query":"fishing",
+					"image":"fishing",
+					"room":""
+					
+				},
+			"football":
+					{
+					"display":true,
+					"name":"Football",
+					"localIndex":"",
+					"query":"football",
+					"image":"football",
+					"room":""
+					
+				},
+			"golf":
+					{
+					"display":true,
+					"name":"Golf",
+					"localIndex":"",
+					"query":"golf",
+					"image":"golf",
+					"room":""
+					
+				},
+			"gymnastics":
+					{
+					"display":true,
+					"name":"Gymnastics",
+					"localIndex":"",
+					"query":"gymnastics",
+					"image":"gymnastics",
+					"room":""
+					
+				},
+			"hiking":
+					{
+					"display":true,
+					"name":"Hiking",
+					"localIndex":"",
+					"query":"hiking",
+					"image":"hiking",
+					"room":""
+					
+				},
+			"hockey":
+					{
+					"display":true,
+					"name":"Hockey",
+					"localIndex":"",
+					"query":"hockey",
+					"image":"hockey",
+					"room":""
+					
+				},
+			"horse_racing":
+					{
+					"display":true,
+					"name":"Horse Racing",
+					"localIndex":"",
+					"query":"&quot;horse racing&quot;",
+					"image":"horseracing",
+					"room":""
+					
+				},
+			"ice_skating":
+					{
+					"display":true,
+					"name":"Ice Skating",
+					"localIndex":"",
+					"query":"ice skating",
+					"image":"iceskating",
+					"room":""
+					
+				},
+			"lacrosse":
+					{
+					"display":true,
+					"name":"Lacrosse",
+					"localIndex":"",
+					"query":"lacrosse",
+					"image":"lacrosse",
+					"room":""
+					
+				},
+			"martial_arts":
+					{
+					"display":true,
+					"name":"Martial Arts",
+					"localIndex":"",
+					"query":"&quot;martial arts&quot;",
+					"image":"karate",
+					"room":""
+					
+				},
+			"olympic_games":
+					{
+					"display":true,
+					"name":"Olympic Games",
+					"localIndex":"",
+					"query":"olympics",
+					"image":"olympicgames",
+					"room":""
+					
+				},
+			"ping_pong":
+					{
+					"display":true,
+					"name":"Ping Pong",
+					"localIndex":"",
+					"query":"&quot;table tennis&quot;",
+					"image":"pingpong",
+					"room":""
+					
+				},
+			"rock_climbing":
+					{
+					"display":true,
+					"name":"Rock Climbing",
+					"localIndex":"",
+					"query":"&quot;rock climbing&quot;",
+					"image":"rockclimbing",
+					"room":""
+					
+				},
+			"rodeo":
+					{
+					"display":true,
+					"name":"Rodeo",
+					"localIndex":"",
+					"query":"rodeo",
+					"image":"rodeo",
+					"room":""
+					
+				},
+			"roller_skating":
+					{
+					"display":true,
+					"name":"Roller Skating",
+					"localIndex":"",
+					"query":"&quot;roller skating&quot;",
+					"image":"rollerskating",
+					"room":""
+					
+				},
+			"rugby":
+					{
+					"display":true,
+					"name":"Rugby",
+					"localIndex":"",
+					"query":"rugby",
+					"image":"rugby",
+					"room":""
+					
+				},
+			"skateboarding":
+					{
+					"display":true,
+					"name":"Skateboarding",
+					"localIndex":"",
+					"query":"skateboarding",
+					"image":"skateboarding",
+					"room":""
+					
+				},
+			"skiing":
+					{
+					"display":true,
+					"name":"Skiing",
+					"localIndex":"",
+					"query":"skiing",
+					"image":"skiing",
+					"room":""
+					
+				},
+			"soccer":
+					{
+					"display":true,
+					"name":"Soccer",
+					"localIndex":"",
+					"query":"soccer",
+					"image":"soccer",
+					"room":""
+					
+				},
+			"softball":
+					{
+					"display":true,
+					"name":"Softball",
+					"localIndex":"",
+					"query":"softball",
+					"image":"softball",
+					"room":""
+					
+				},
+			"sports_cards":
+					{
+					"display":true,
+					"name":"Sports Cards",
+					"localIndex":"",
+					"query":"&quot;sports cards&quot;",
+					"image":"sportscards",
+					"room":""
+					
+				},
+			"swimming":
+					{
+					"display":true,
+					"name":"Swimming",
+					"localIndex":"",
+					"query":"swimming",
+					"image":"swimming",
+					"room":""
+					
+				},
+			"tennis":
+					{
+					"display":true,
+					"name":"Tennis",
+					"localIndex":"",
+					"query":"tennis",
+					"image":"tennis",
+					"room":""
+					
+				},
+			"track_and_field":
+					{
+					"display":true,
+					"name":"Track & Field",
+					"localIndex":"",
+					"query":"track field",
+					"image":"trackandfield",
+					"room":""
+					
+				},
+			"volleyball":
+					{
+					"display":true,
+					"name":"Volleyball",
+					"localIndex":"",
+					"query":"volleyball",
+					"image":"volleyball",
+					"room":""
+					
+				},
+			"wrestling":
+					{
+					"display":true,
+					"name":"Wrestling",
+					"localIndex":"",
+					"query":"wrestling",
+					"image":"wrestling",
+					"room":""
+					
+				}
+				
+		},
+		"stories": 
+		{
+
+			"adventure_stories":
+					{
+					"display":true,
+					"name":"Adventure Stories",
+					"localIndex":"",
+					"query":"&quot;adventure stories&quot;",
+					"image":"adventure",
+					"room":""
+					
+				},
+			"childrens_stories":
+					{
+					"display":true,
+					"name":"Children's Stories",
+					"localIndex":"",
+					"query":"&quot;children's stories&quot;",
+					"image":"childrens",
+					"room":""
+					
+				},
+			"fairy_tales":
+					{
+					"display":true,
+					"name":"Fairy Tales",
+					"localIndex":"",
+					"query":"&quot;fairy tales&quot;",
+					"image":"fairytales",
+					"room":""
+					
+				},
+			"folk_tales":
+					{
+					"display":true,
+					"name":"Folk Tales",
+					"localIndex":"",
+					"query":"&quot;folk tales&quot;",
+					"image":"folktales",
+					"room":""
+					
+				},
+			"ghost_stories":
+					{
+					"display":true,
+					"name":"Ghost Stories",
+					"localIndex":"",
+					"query":"&quot;ghost stories&quot;",
+					"image":"ghost",
+					"room":""
+					
+				},
+			"horror_tales":
+					{
+					"display":true,
+					"name":"Horror Tales",
+					"localIndex":"",
+					"query":"&quot;horror tales&quot;",
+					"image":"horror",
+					"room":""
+					
+				},
+			"humorous_stories":
+					{
+					"display":true,
+					"name":"Humorous Stories",
+					"localIndex":"",
+					"query":"&quot;humorous stories&quot;",
+					"image":"humorous",
+					"room":""
+					
+				},
+			"mysteries":
+					{
+					"display":true,
+					"name":"Mysteries",
+					"localIndex":"",
+					"query":"mystery",
+					"image":"mysteries",
+					"room":""
+					
+				},
+			"science_fiction":
+					{
+					"display":true,
+					"name":"Science Fiction",
+					"localIndex":"",
+					"query":"&quot;science fiction&quot;",
+					"image":"scifi",
+					"room":""
+					
+				},
+			"spy_fiction":
+					{
+					"display":true,
+					"name":"Spy Fiction",
+					"localIndex":"",
+					"query":"&quot;spy fiction&quot;",
+					"image":"spy",
+					"room":""
+					
+				},
+			"westerns":
+					{
+					"display":true,
+					"name":"Westerns",
+					"localIndex":"",
+					"query":"&quot;western stories&quot;",
+					"image":"westerns",
+					"room":""
+					
+				}
+				
+		}
+    }		
