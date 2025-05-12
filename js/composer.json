@@ -1,6 +1,0 @@
-{
-    "require": {
-        "tigitz/php-spellchecker": "^0.7.0",
-        "riorizkyrainey/php-spell-checker-suggestion": "^1.1"
-    }
-}

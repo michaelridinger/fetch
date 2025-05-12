@@ -1,4 +1,7 @@
 *.zip
+didyoumean*
+js/didyoumean*
+js/didyoumean.js
 harvest/
 images/
 logs/
